@@ -1,14 +1,4 @@
-        body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      position: relative;
-    }
+        
     .delivery-heading {
       font-size: 24px;
       color: #009500;
@@ -76,7 +66,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.9); /* Dim effect */
+      background: rgba(0, 0, 0, 0.5); /* Dim effect */
       z-index: 999; /* Behind the menu but above content */
     }
     .right-cards-container {
@@ -157,13 +147,14 @@
            font-style: italic;
            color: black;
            margin: 0;
+           margin-top: -50px;
            font-size: 16px;
            flex: 1; 
            border-bottom: 1px solid #ccc;
         }
 
         .popup-content {
-            margin-top: 30px;
+            margin-top: 40px;
             padding: 10px;
             overflow-y: auto;
             height: 520px;
@@ -175,6 +166,8 @@
             margin: 10px 0;
             color: #009500;
             text-decoration: none;
+            position: relative;
+            z-index: 1010;   
         }       
          .overlay {
             position: fixed;
