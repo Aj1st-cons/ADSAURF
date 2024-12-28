@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     style.textContent = `
       html, body {
         margin: 0;
+        margin-left: -15px;
         padding: 0;
         width: 100%;
       }
@@ -34,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.style.color = '#fff';
     heading.style.lineHeight = '1.5';
     heading.style.marginTop = '-10px';
-    heading.style.marginLeft = '-10px';
     heading.style.fontFamily = "'Krona One', sans-serif"; // Apply Krona One font
 
     // Create the ordered list (ol)
@@ -61,9 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const hr = document.createElement('hr');
     hr.style.width = '25%';
     hr.style.border = '1px solid white';
-    hr.style.marginTop = '0px';
+    hr.style.marginTop = '-15px';
     hr.style.marginLeft = '20px';
-    hr.style.marginBottom = '-15px';
     hr.style.display = 'inline-block';
 
     // Append h1 and hr to the section
