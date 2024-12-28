@@ -189,4 +189,13 @@ function closepopupA1() {
             popupA1.style.display = "none";
             overlay.style.display = "none"; // Hide overlay
         }
+        
+/* placeholder */   
+document.addEventListener('DOMContentLoaded', () => {
+  // Find the placeholder element by its new ID
+  const placeholder = document.getElementById('popupcategory-placeholder');
+
+  // Simulate content loading (e.g., from an API or dynamically generated)
+  setTimeout(() => {}, 2000); // Simulate a 2-second delay for loading
+});     
     
