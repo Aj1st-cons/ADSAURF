@@ -193,7 +193,7 @@ function closepopupA1() {
 /* placeholder */   
 document.addEventListener('DOMContentLoaded', () => {
   const placeholder = document.createElement('div');
-  placeholder.id = 'category-script-placeholder';
+  placeholder.id = 'category-placeholder';
   placeholder.innerText = 'Loading content...';
   
   placeholder.style.position = 'fixed';
