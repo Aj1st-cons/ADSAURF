@@ -192,10 +192,23 @@ function closepopupA1() {
         
 /* placeholder */   
 document.addEventListener('DOMContentLoaded', () => {
-  // Find the placeholder element by its new ID
-  const placeholder = document.getElementById('popupcategory-placeholder');
+  const placeholder = document.createElement('div');
+  placeholder.id = 'category-script-placeholder';
+  placeholder.innerText = 'Loading content...';
+  
+  placeholder.style.position = 'fixed';
+  placeholder.style.top = '0';
+  placeholder.style.left = '0';
+  placeholder.style.width = '100%';
+  placeholder.style.backgroundColor = '#009500';
+  placeholder.style.color = '#fff';
+  placeholder.style.padding = '10px';
+  placeholder.style.textAlign = 'center';
+  placeholder.style.zIndex = '1000';
+  
+  document.body.appendChild(placeholder);
 
-  // Simulate content loading (e.g., from an API or dynamically generated)
-  setTimeout(() => {}, 2000); // Simulate a 2-second delay for loading
-});     
-    
+  setTimeout(() => {
+    placeholder.innerText = 'Content Loaded!';
+  }, 2000);
+});
