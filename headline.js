@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     style.textContent = `
       html, body {
         margin: 0;
-        margin-left: -15px;
+        margin-left: -10px;
         padding: 0;
         width: 100%;
       }
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hr = document.createElement('hr');
     hr.style.width = '25%';
     hr.style.border = '1px solid white';
-    hr.style.marginTop = '-15px';
+    hr.style.marginTop = '-5px';
     hr.style.marginLeft = '20px';
     hr.style.display = 'inline-block';
 
