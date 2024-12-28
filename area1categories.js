@@ -208,7 +208,5 @@ document.addEventListener('DOMContentLoaded', () => {
   
   document.body.appendChild(placeholder);
 
-  setTimeout(() => {
-    placeholder.innerText = 'Content Loaded!';
-  }, 2000);
+  setTimeout(() => { }, 2000);
 });
