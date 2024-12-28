@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     style.textContent = `
       html, body {
         margin: 0;
-        margin-left: -10px;
         padding: 0;
         width: 100%;
       }
@@ -23,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const section = document.createElement('section');
     section.style.textAlign = 'left';
     section.style.margin = '0'; // Remove any margin
+    section.style.marginLeft = '-10px';
     section.style.padding = '10px'; // Adjust padding as needed
     section.style.background = '#009500';
     section.style.width = '100vw'; // Make the width 100% of the viewport
@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hr.style.border = '1px solid white';
     hr.style.marginTop = '-5px';
     hr.style.marginLeft = '20px';
+    hr.style.marginBottom = '-10px';
     hr.style.display = 'inline-block';
 
     // Append h1 and hr to the section
