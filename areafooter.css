@@ -1,0 +1,44 @@
+p {
+        margin: 0;
+        font-family: 'Krona One', sans-serif;
+        font-size: 10px;
+    }
+    
+    .krona-font {
+        font-weight: bold;
+        font-size: 11px;
+    }
+    .sticky-footer {
+        margin-top: auto;
+        margin-bottom: 5px;
+        width: 100%;
+        text-align: center;
+    }
+    .content0 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Optional for centering the main content */
+        color: #333;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+    }
+    .container2 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px; 
+            margin-top: 50px;                      
+        }
+    @media (min-width: 768px) 
+        {
+        .container2 {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 80px; 
+            }
+            .sticky-footer {
+            margin-bottom: -120px;            
+            }
+          }
