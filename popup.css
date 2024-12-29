@@ -202,10 +202,10 @@
     }
 
     .delivery-card-container {
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-        height: 100vh; 
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh !important;
     }
     .right-cards-container {
         width: 180px;
