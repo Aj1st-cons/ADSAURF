@@ -118,7 +118,7 @@ generateRecentItems();
 
       // Create the script element
       const script = document.createElement('script');
-      script.src = "https://adsaurf.pages.dev/area1recentitems.js";
+      script.src = "";
       script.defer = true;
 
       // Append the script to the container
