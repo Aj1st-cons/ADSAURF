@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.style.color = '#fff';
     heading.style.lineHeight = '1.5';
     heading.style.marginTop = '-10px';
+    heading.style.marginBottom = '-20px';
     heading.style.fontFamily = "'Krona One', sans-serif"; // Apply Krona One font
 
     // Create the ordered list (ol)
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const items = [
       'Easy Selections',
       'Competitive Prices',
-      '30 minutes area-wise & 48-Hours Normal Delivery',
+      'Delivery in 30 minutes',
       'Cash on Delivery!'
     ];
 
