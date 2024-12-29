@@ -30,6 +30,23 @@ function generateRecentItems() {
   verticalContainer.style.padding = '0px';
   verticalContainer.style.margin = '0 10px';
 
+  // Apply desktop-specific styles
+function applyDesktopStyles() {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        verticalContainer.style.justifyContent = 'center'; 
+        heading.style.textAlign = 'center';
+        heading.style.marginLeft = '0';
+    } else {
+        verticalContainer.style.justifyContent = ''; 
+        heading.style.textAlign = 'left';
+        heading.style.marginLeft = '50px';
+    }
+}
+
+// Call the function on load and resize
+window.addEventListener('resize', applyDesktopStyles);
+applyDesktopStyles();
+
   const items = [
     { name: 'MOBILE PHONES', price: '1500 Dhs', img: 'https://cdn.shopify.com/s/files/1/0702/6055/5812/files/1733977371928.png?v=1734156081' },
     { name: 'TABLETS', price: '', img: 'https://cdn.shopify.com/s/files/1/0702/6055/5812/files/1733985875402.png?v=1734160126' },
