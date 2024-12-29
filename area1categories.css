@@ -1,4 +1,4 @@
- .main-containerA1 {
+        .main-containerA1 {
             width: 100%;
             max-width: 400px;
             padding: 10px;
@@ -86,3 +86,15 @@
             color: black;
             margin-top: 5px;
         }
+
+          @media (min-width: 768px) {
+    .main-containerA1 {
+        width: 100vw; 
+        max-width: none; 
+        margin-left: 0px;
+               
+        }
+    .category-containerA1 {    
+            margin: 20px 200px;            
+        }
+}         
