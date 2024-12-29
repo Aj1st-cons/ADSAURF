@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.style.textAlign = 'left';
     heading.style.color = '#fff';
     heading.style.lineHeight = '1.5';
-    heading.style.marginTop = '-10px';
+    heading.style.marginTop = '30px';
     heading.style.marginBottom = '0px';
     heading.style.fontFamily = "'Krona One', sans-serif"; // Apply Krona One font
 
