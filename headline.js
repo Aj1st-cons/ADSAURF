@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.style.color = '#fff';
     heading.style.lineHeight = '1.5';
     heading.style.marginTop = '-10px';
-    heading.style.marginBottom = '-25px';
+    heading.style.marginBottom = '-35px';
     heading.style.fontFamily = "'Krona One', sans-serif"; // Apply Krona One font
 
     // Create the ordered list (ol)
