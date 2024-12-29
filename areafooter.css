@@ -41,6 +41,6 @@ p {
             .sticky-footer {
             margin-bottom: -120px;            
             }
-            .button{
-            margin-top: 70px;
-          }
+             #fullscreenMenu {
+            margin-top: 40px !important;
+             }
