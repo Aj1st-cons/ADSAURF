@@ -38,6 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.style.marginBottom = '0px';
     heading.style.fontFamily = "'Krona One', sans-serif"; // Apply Krona One font
 
+    // Apply desktop-specific styles
+function applyDesktopStyles() {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        heading.style.marginTop = '70px';
+    } else {
+        heading.style.marginTop = '40px';
+    }
+}
+
+// Run the function initially
+applyDesktopStyles();
+
+// Add an event listener for screen resize
+window.addEventListener('resize', applyDesktopStyles);
+
+// Append the heading to the body
+document.body.appendChild(heading);
+
+
+
+    
     // Create the ordered list (ol)
     const list = document.createElement('ol');
 
