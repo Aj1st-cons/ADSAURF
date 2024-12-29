@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const section = document.createElement('section');
     section.style.textAlign = 'left';
     section.style.margin = '0'; // Remove any margin
-    section.style.marginLeft = '-15px';
+    section.style.marginLeft = '0px';
     section.style.padding = '10px'; // Adjust padding as needed
     section.style.background = '#009500';
     section.style.width = '100vw'; // Make the width 100% of the viewport
@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.style.color = '#fff';
     heading.style.lineHeight = '1.5';
     heading.style.marginTop = '-10px';
-    heading.style.marginBottom = '-20px';
     heading.style.fontFamily = "'Krona One', sans-serif"; // Apply Krona One font
 
     // Create the ordered list (ol)
