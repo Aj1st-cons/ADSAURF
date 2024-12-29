@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply desktop-specific styles
 function applyDesktopStyles() {
     if (window.matchMedia('(min-width: 768px)').matches) {
-        heading.style.marginTop = '70px';
+        heading.style.marginTop = '75px';
     } else {
         heading.style.marginTop = '40px';
     }
