@@ -1,83 +1,216 @@
-<link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet"> 
-
-    <link href="popup.css" rel="stylesheet">                             
-</head>
-<body>
-       <div class="delivery-card">    
-  <div> 
-       <div class="delivery-heading">30 mins Delivery</div>
-       
-      <div class="location-container">
-      <div class="location-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" style="width: 30px; height: 30px; margin-right: 5px;" viewBox="0 0 24 24" fill="#009500">
-          <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2M12 11.5C10.62 11.5 9.5 10.38 9.5 9S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5Z" /></svg>
-      </div> 
-           
-      <div class="location-select">
-        <button class="location-button">Select Location</button>
-        <div class="location-menu">          
-          <a href="javascript:void(0);" onclick="openPopup('Abudhabi')"><span class="initial">A</span><span>bu Dhabi</span></a>          
-          <a href="https://adsaurf.com"><span class="initial">D</span><span>ubai</span></a>
-          <a href="https://adsaurf.com"><span class="initial">S</span><span>harjah</span></a>
-          <a href="https://adsaurf.com"><span class="initial">A</span><span>jman</span></a>
-          <a href="https://adsaurf.com"><span class="initial">U</span><span>m AlQuain</span></a>
-          <a href="https://adsaurf.com"><span class="initial">R</span><span>as Al Khaimah</span></a>                    
-          <a href="https://adsaurf.com"><span class="initial">F</span><span>ujairah</span></a>
-        </div>
-      </div>
-    
-  
-
-        <!-- Dimmed background overlay -->
-  <div class="dim-overlay"></div> 
-  
-               <!-- sliding cards -->
-      <div class="right-cards-container" style="margin-left: 20px; margin-top:-30px;">
-<div class="card">All over UAE</div>
-<div class="card">100% Guaranteed</div>
-<div class="card">Any items</div>
-<div class="card">Groceries</div>
-<div class="card">Electronics</div>
-<div class="card">Baby Products</div>
-<div class="card">Beauty Products</div>
-<div class="card">Cloths</div>
-  </div>
-  </div>
-</div> 
-</div>          
-<!-- ######################################## -->                
-                <!-- popup -->       
-       <script src="https://adsaurf.pages.dev/popup.js"></script>                                 
-              <!-- Overlay 2 -->
-       <div class="overlay" id="overlay" onclick="closePopup()"></div>                 
-                
-               <!-- Abudhabi -->                          
-        <script src="https://adsaurf.pages.dev/Abudhabi.js"></script>                          
-        <script src="https://adsaurf.pages.dev/AbudhabiCities.js"></script>         
+    .delivery-card {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding: 10px; 
+    background-color: #fff; 
+    border-radius: 10px; 
+    max-width: 400px; 
         
-                <!-- Dubai -->
-        <script src="Dubai.js"></script> 
-        <script src="city2.js"></script> 
-                              
-                <!-- Sharjah -->
-        <script src="Sharjah.js"></script> 
-        <script src="city2.js"></script> 
-                       
-                <!-- Ajman -->
-        <script src="Ajman.js"></script> 
-        <script src="city2.js"></script>
-                        
-                <!-- Um Al Quain-->
-        <script src="UmAlQuain.js"></script> 
-        <script src="city2.js"></script>  
-                                      
-                <!-- Ras Al Khaimah-->
-        <script src="RasAlKhaimah.js"></script> 
-        <script src="city2.js"></script> 
-                                       
-                <!-- Fujairah -->
-        <script src="Fujairah.js"></script> 
-        <script src="city2.js"></script>                
-                                                                               
-</body>
-</html>
+    margin: 0 auto; 
+    box-sizing: border-box; 
+}
+    .delivery-heading {
+      font-size: 24px;
+      color: #009500;
+      font-weight: bold;
+      margin: 10px; 
+      margin-top: -10px;     
+    }
+    .location-container {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      margin: 5px;
+    }
+    .location-icon {
+      display: flex;
+      align-items: left;
+      margin-top: 0px;
+    }
+    .location-select {
+      position: relative;
+    }
+    .location-button {
+      font-size: 12px;
+      background: white;
+      border: 1.5px solid #009500;
+      border-radius: 5px;
+      padding: 5px 28px;
+      cursor: pointer;
+      outline: none;
+    }
+    .location-menu {
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      background: white;
+      border: 1px solid #009500;
+      border-radius: 10px;
+      width: 200px; /* Updated width */
+      z-index: 1000;
+    }
+    .location-menu a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;      
+      color: #009500;
+      border-bottom: 1px solid #e0e0e0;          
+    }
+    .initial {
+      font-weight:bold; 
+      font-size:20px; 
+      font-family: 'Krona One', sans-serif;       
+    }    
+    .location-menu a:last-child {
+      border-bottom: none;
+    }
+    .location-menu a:hover {
+      background: #f0f0f0;
+    }
+
+    /* Dimmed background */
+    .dim-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); 
+      z-index: 999; 
+    }
+    .right-cards-container {
+      width: 170px; /* Reduced width */
+      height: 50px; /* Reduced height */
+      overflow: hidden;
+      position: relative;
+      border-radius: 10px;
+    }
+    .card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #009500, #ffffff);
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: all 0.8s ease-in-out;
+      margin-right: 10px;
+      margin-left: 5px;
+    }
+    .card.active {
+      transform: translateY(0);
+      opacity: 1;
+      
+    }      
+                 
+                  /* popup */       
+        .popup {
+            font-family: 'Krona One', sans-serif;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            width: 300px;
+            height: 600px;
+            border-radius: 15px;
+            border: 2px solid #009500;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+         .popup-header {    
+           font-weight: bold;
+           font-size: 12px;
+           position: fixed;
+           width: 100%;
+           max-width: 300px;
+           padding: 10px;
+           box-sizing: border-box;
+           background: white;
+           border-radius: 15px 15px 0 0;
+           z-index: 1010;
+           display: flex;
+           align-items: center;
+           justify-content: space-between; 
+        }
+
+        .close-link, .back-link {
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 10px;
+            position: absolute;
+            right: 10px;       
+            top: 10px;
+        }
+
+        .popup-title {
+           text-align: center;
+           font-family: sans-serif;
+           font-style: italic;
+           color: black;
+           margin: 0;
+           margin-top: -50px;
+           font-size: 16px;
+           flex: 1; 
+           border-bottom: 1px solid #ccc;
+        }
+
+        .popup-content {
+            margin-top: 40px;
+            padding: 10px;
+            overflow-y: auto;
+            height: 520px;
+            text-align: left;
+        }
+
+        .popup-content a {
+            display: block;
+            margin: 10px 0;
+            color: #009500;
+            text-decoration: none;
+            position: relative;
+            z-index: 1010;   
+        }       
+         .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            z-index: 999;
+        }
+
+    @media (min-width: 768px) {
+    .delivery-card {
+        width: auto; 
+        padding: 10px; 
+    }
+
+    .delivery-card-container {
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+    }
+    .right-cards-container {
+        width: 180px;
+    }
+    .card {
+        margin-left: 20px;
+        }
+    }   
