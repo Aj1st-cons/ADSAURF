@@ -105,3 +105,31 @@ function generateRecentItems() {
 
 // Call the function to generate the content
 generateRecentItems();
+
+
+  // Function to dynamically insert the div and script
+  function insertRecentItems(targetSelector) {
+    // Select the target element where the script will be placed
+    const targetElement = document.querySelector(targetSelector);
+
+    if (targetElement) {
+      // Create a container div
+      const container = document.createElement('div');
+
+      // Create the script element
+      const script = document.createElement('script');
+      script.src = "https://adsaurf.pages.dev/area1recentitems.js";
+      script.defer = true;
+
+      // Append the script to the container
+      container.appendChild(script);
+
+      // Insert the container into the target element
+      targetElement.appendChild(container);
+    } else {
+      console.error(`Target element "${targetSelector}" not found.`);
+    }
+  }
+
+  // Call the function and specify the target selector (e.g., "body" or ".target-class")
+  insertRecentItems("#recentitemsplaceholder"); // Change "body" to your desired selector
