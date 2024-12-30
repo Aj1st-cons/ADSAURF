@@ -196,6 +196,9 @@
         }
 
     @media (min-width: 768px) {
+    .delivery-heading {
+        margin-top: 10px;
+            
     .delivery-card {
         width: auto; 
         padding: 10px; 
