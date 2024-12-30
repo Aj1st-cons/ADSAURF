@@ -31,7 +31,7 @@
     /* Desktop-specific styles */
     @media (min-width: 768px) {
         #unique-section {
-            margin-top: 60px;
+            margin-top: 40px;
         }
 
         #unique-heading {
