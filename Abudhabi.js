@@ -1,11 +1,11 @@
 function createAbuDhabiPopup() {
   // Create a container for the Abudhabi popup
-  const abuDhabiPopup = document.createElement('div');
-  abuDhabiPopup.id = 'Abudhabi';
-  abuDhabiPopup.className = 'popup';
+  const AbuDhabiPopup = document.createElement('div');
+  AbuDhabiPopup.id = 'Abudhabi';
+  AbuDhabiPopup.className = 'popup';
 
   // Add the inner HTML for the Abudhabi popup
-  abuDhabiPopup.innerHTML = `
+  AbuDhabiPopup.innerHTML = `
     <div class="popup-header">
       <a href="javascript:void(0);" onclick="closePopup()" class="close-link">Close</a>
       <p class="popup-title">Select the city in Abu Dhabi</p>
@@ -18,7 +18,7 @@ function createAbuDhabiPopup() {
   `;
 
   // Append the popup to the body or another container
-  document.body.appendChild(abuDhabiPopup);
+  document.body.appendChild(AbuDhabiPopup);
 }
 
 // Example usage
