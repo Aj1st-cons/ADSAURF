@@ -105,6 +105,7 @@
       transition: all 0.8s ease-in-out;
       margin-right: 10px;
       margin-left: 5px;
+      margin-bottom: -5px;
     }
     .card.active {
       transform: translateY(0);
