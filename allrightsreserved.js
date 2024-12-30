@@ -5,7 +5,7 @@
 
     // Set the inner HTML for the footer
     footerDiv.innerHTML = `
-        <p style="text-align:center; color:#000; margin-bottom: 10px; margin-top:10px;">
+        <p style="text-align:center; color:#000; margin-bottom: -20px; margin-top:10px;">
             <span style="font-family: 'Krona One', serif;">ADSAURF</span> ©2024<br> All Rights Reserved.
         </p>
     `;
