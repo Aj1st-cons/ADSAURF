@@ -199,12 +199,10 @@
     @media (min-width: 768px) {
     .delivery-heading {
         margin-top: 20px;
-        align-items: center;
-        
+        margin-left: 400px;
     }
     .location-icon {
-        align-items: center;
-        
+        margin-left: 400px;
     }
     .delivery-card {
         width: auto; 
