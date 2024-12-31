@@ -13,6 +13,7 @@ function createSharjahPopup() {
     </div>
     <div class="popup-content">
       <a href="javascript:void(0);" onclick="openPopup('Al Nadah')">Al Nadah</a>
+      <a href="javascript:void(0);" onclick="openPopup('Al Nadah')">Al Nadah</a>
       <a href="javascript:void(0);" onclick="openPopup('Al Tawun')">Al Tawun</a>
     </div>
     <a href="javascript:void(0);" onclick="openPopup('Buhairah')">Buhairah</a>
