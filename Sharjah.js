@@ -8,13 +8,13 @@ function createSharjahPopup() {
   SharjahPopup.innerHTML = `
     <div class="popup-header">
       <a href="javascript:void(0);" onclick="closePopup()" class="close-link">Close</a>
-      <p class="popup-title">Select the city in Abu Dhabi</p>
+      <p class="popup-title">Select the city in Sharjah</p>
       <hr>
     </div>
     <div class="popup-content">
-      <a href="javascript:void(0);" onclick="openPopup('Al Nadah')">Al Nadah</a>
-      <a href="javascript:void(0);" onclick="openPopup('Buhairah')">Buhairah</a>
-      <a href="javascript:void(0);" onclick="openPopup('Al Tawun')">Al Tawun</a>
+      <a href="javascript:void(0);" onclick="openPopup('AlNadah')">Al Nadah</a>
+      <a href="javascript:void(0);" onclick="openPopup('Buhairah)">Buhairah</a>
+      <a href="javascript:void(0);" onclick="openPopup('AlTawun')">Al Tawun</a>
     </div>
   `;
 
