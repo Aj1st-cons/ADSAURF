@@ -16,8 +16,6 @@ function createSharjahPopup() {
       <a href="javascript:void(0);" onclick="openPopup('Buhairah')">Buhairah</a>
       <a href="javascript:void(0);" onclick="openPopup('Al Tawun')">Al Tawun</a>
     </div>
-    <a href="javascript:void(0);" onclick="openPopup('Buhairah')">Buhairah</a>
-    </div>
   `;
 
   // Append the popup to the body or another container
