@@ -1,33 +1,40 @@
 
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
-function createAlNadahPopup() {
+function createIndustrialPopup() {
   // Create a container for the city1 popup
-  const AlNadahPopup = document.createElement('div');
-  AlNadahPopup.id = 'AlNadah';
-  AlNadahPopup.className = 'popup';
+  const IndustrialPopup = document.createElement('div');
+  IndustrialPopup.id = 'Industrial';
+  IndustrialPopup.className = 'popup';
 
   // Add the inner HTML for the city1 popup
-  AlNadahPopup.innerHTML = `
+  IndustrialPopup.innerHTML = `
     <div class="popup-header">
-      <a href="javascript:void(0);" onclick="goBack('AlNadah', 'Sharjah')" class="close-link">Back</a>
+      <a href="javascript:void(0);" onclick="goBack('Industrial', 'Sharjah')" class="close-link">Back</a>
       <p class="popup-title">Select area</p>
       <hr>
     </div>
     <div class="popup-content">
-<a href="https://adsaurf.com/pages/shj-nadah">AlNadah - Nadah Park</a>
-<a href="https://AlNadah-area2.com">AlNadah - Safeer mall</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 1</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 2</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 3</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 4</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 5</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 6</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 7</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 8</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 9</a>
+<a href="https://adsaurf.com/pages/shj-ind">Industrial Area - 10</a>
     </div>
   `;
 
   // Append the popup to the body or another container
-  document.body.appendChild(AlNadahPopup);
+  document.body.appendChild(IndustrialPopup);
 }
 
 // Example usage
 document.addEventListener('DOMContentLoaded', () => {
-  createAlNadahPopup();
+  createIndustrialPopup();
 });
-
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 function createCity2Popup() {
   // Create a container for the popup
