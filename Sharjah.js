@@ -12,7 +12,7 @@ function createSharjahPopup() {
       <hr>
     </div>
     <div class="popup-content">
-      <a href="javascript:void(0);" onclick="openPopup('AlNadah')">Al Nadah</a>
+      <a href="https://adsaurf.com/pages/shj-nadah">Al Nadah</a>
       <a href="javascript:void(0);" onclick="openPopup('Buhairah)">Buhairah</a>
       <a href="javascript:void(0);" onclick="openPopup('AlTawun')">Al Tawun</a>
     </div>
