@@ -9,13 +9,13 @@ function createAlNadahPopup() {
   // Add the inner HTML for the city1 popup
   AlNadahPopup.innerHTML = `
     <div class="popup-header">
-      <a href="javascript:void(0);" onclick="goBack('AlNadah', 'Abudhabi')" class="close-link">Back</a>
+      <a href="javascript:void(0);" onclick="goBack('AlNadah', 'Sharjah')" class="close-link">Back</a>
       <p class="popup-title">Select area</p>
       <hr>
     </div>
     <div class="popup-content">
-<a href="https://AlNadah1-area1.com">AlNadah - Nadah Park</a>
-<a href="https://AlNadah-area2.com">AlNadah - Etisalat</a>
+<a href="https://adsaurf.com/pages/shj-nadah">AlNadah - Nadah Park</a>
+<a href="https://AlNadah-area2.com">AlNadah - Safeer mall</a>
     </div>
   `;
 
