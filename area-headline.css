@@ -1,0 +1,43 @@
+    /* Default styles for all devices */
+    #unique-section {
+        text-align: left;
+        margin: 0;
+        padding: 5px;
+        border-radius: 0px;
+        background: #009500;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #unique-heading {
+        font-size: 0.8em;
+        font-family: Asul;
+        text-align: left;
+        color: #fff;
+        font-weight: 600;
+        line-height: 1.5;
+        margin-left: 0;
+        margin-top: 50px;
+    }
+
+    hr {
+        width: 25%;
+        border: 1px solid white;
+        margin-top: 0px;
+        margin-left: 20px;
+        margin-bottom: -15px;
+        display: inline-block;
+    }
+
+    /* Desktop-specific styles */
+    @media (min-width: 768px) {
+        #unique-section {
+            margin-top: 40px;
+        }
+
+        #unique-heading {
+            margin-left: 200px;
+        }
+        hr {
+           margin-left: 180px;    
+        }
+    }
