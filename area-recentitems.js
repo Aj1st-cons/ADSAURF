@@ -11,11 +11,13 @@ function generateRecentItems() {
   recentContainer.style.padding = '5px';
 
   const heading = document.createElement('h1');
-  heading.textContent = 'recently added items ..';  
+  heading.textContent = 'recently added items ..';
+  heading.className = 'center-h1';
   heading.style.textAlign = 'center';
   heading.style.fontWeight = 'bold';
-  heading.style.fontSize = '16px';  
-  heading.style.padding = '10px';
+  heading.style.fontSize = '16px';
+  heading.style.marginLeft = '50px';
+  heading.style.padding = '15px';
   heading.style.color = '#1e90ff';
   recentContainer.appendChild(heading);
 
@@ -95,6 +97,7 @@ applyDesktopStyles();
     name.style.fontWeight = 'bold';
     name.style.color = '#1e90ff';
     name.style.marginTop = '5px';
+
     link.appendChild(imageSpace);
     link.appendChild(name);
 
@@ -132,22 +135,6 @@ generateRecentItems();
 
       // Create the script element
       const script = document.createElement('script');
-      script.src = "";
-      script.defer = true;
-
-      // Append the script to the container
-      container.appendChild(script);
-
-      // Insert the container into the target element
-      targetElement.appendChild(container);
-    } else {
-      console.error(`Target element "${targetSelector}" not found.`);
-    }
-  }
-
-  // Call the function and specify the target selector (e.g., "body" or ".target-class")
-  insertRecentItems("#recentitemsplaceholder"); // Change "body" to your desired selector
-cript = document.createElement('script');
       script.src = "";
       script.defer = true;
 
