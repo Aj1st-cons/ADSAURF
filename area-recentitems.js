@@ -8,7 +8,7 @@ function generateRecentItems() {
   const recentContainer = document.createElement('div');
   recentContainer.className = 'recent-container';
   recentContainer.style.background = '#fff';
-  recentContainer.style.padding = '5px';
+  recentContainer.style.padding = '0px';
 
   const heading = document.createElement('h1');
   heading.textContent = 'recently added items ..';
