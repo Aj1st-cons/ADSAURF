@@ -13,11 +13,11 @@ function generateRecentItems() {
   const heading = document.createElement('h1');
   heading.textContent = 'recently added items ..';
   heading.className = 'center-h1';
-  heading.style.textAlign = 'center';
+  heading.style.textAlign = 'left';
   heading.style.fontWeight = 'bold';
   heading.style.fontSize = '16px';
   heading.style.padding = '10px';
- heading.style.color = '#1e90ff';
+  heading.style.color = '#1e90ff';
   heading.style.marginBottom = '0px';
   recentContainer.appendChild(heading);
 
