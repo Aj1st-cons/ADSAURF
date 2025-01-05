@@ -12,12 +12,13 @@ function generateRecentItems() {
 
   const heading = document.createElement('h1');
   heading.textContent = 'recently added items ..';
-  heading.style.textAlign = 'center';
+  heading.className = 'center-h1';
+  heading.style.textAlign = 'left';
   heading.style.fontWeight = 'bold';
   heading.style.fontSize = '16px';
-  heading.style.color= '#1e90ff';
-  heading.style.padding = '10px';
-  heading.style.fontStyle = 'italic';
+  heading.style.marginLeft = '50px';
+  heading.style.marginTop = '5px';
+  heading.style.marginBottom = '20px';
   recentContainer.appendChild(heading);
 
   const verticalContainer = document.createElement('div');
@@ -94,7 +95,7 @@ applyDesktopStyles();
     name.textContent = item.name;
     name.style.fontSize = '9px';
     name.style.fontWeight = 'bold';
-    name.style.color = '#1e90ff;
+    name.style.color = '#000';
     name.style.marginTop = '5px';
 
     link.appendChild(imageSpace);
