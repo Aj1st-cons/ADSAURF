@@ -95,9 +95,8 @@ applyDesktopStyles();
     name.textContent = item.name;
     name.style.fontSize = '9px';
     name.style.fontWeight = 'bold';
-    name.style.color = '#1e90ff;
+    name.style.color = '#1e90ff';
     name.style.marginTop = '5px';
-
     link.appendChild(imageSpace);
     link.appendChild(name);
 
