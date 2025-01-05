@@ -16,9 +16,9 @@ function generateRecentItems() {
   heading.style.textAlign = 'left';
   heading.style.fontWeight = 'bold';
   heading.style.fontSize = '16px';
-  heading.style.padding = '10px';
-  heading.style.color = '#1e90ff';
-  heading.style.marginBottom = '0px';
+  heading.style.marginLeft = '50px';
+  heading.style.marginTop = '5px';
+  heading.style.marginBottom = '20px';
   recentContainer.appendChild(heading);
 
   const verticalContainer = document.createElement('div');
