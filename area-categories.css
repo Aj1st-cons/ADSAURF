@@ -1,4 +1,4 @@
-        .main-containerA1 {
+.main-containerA1 {
             width: 100%;
             max-width: 400px;
             padding: 10px;
@@ -19,6 +19,8 @@
             text-align: center;
             cursor: pointer;
             position: relative;
+            margin-left: 10px;
+            margin-right: 10px;
         }
 
         .categoryA1 img {
@@ -31,7 +33,9 @@
             font-weight: bold;
             margin-top: 5px;
             font-size: 10px;
-            color: #000;
+            color: #006400;
+            white-space: wrap;
+            line-height: 1;
         }
 
         .overlayA1 {
@@ -88,7 +92,7 @@
             margin-top: 5px;
         }
         ::-webkit-scrollbar {
-            display: none; 
+            display: none; /* For Chrome, Safari, and Edge */
         }
 
           @media (min-width: 768px) {
