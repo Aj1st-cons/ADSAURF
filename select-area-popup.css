@@ -139,7 +139,6 @@
            position: fixed;
            width: 100%;
            top: 5px;
-           
            padding: 10px;
            box-sizing: border-box;
            background: white;
@@ -204,6 +203,8 @@
         margin-top: 20px;
         margin-left: 400px;
     }
+    .popup-header {     
+        top: -10px;
     .location-icon {
         margin-left: 400px;
     }
