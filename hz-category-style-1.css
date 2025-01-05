@@ -26,14 +26,7 @@ body {
                 box-sizing: border-box;
             }
 
-            .horizontal-container::-webkit-scrollbar {
-                height: 4px;
-            }
-
-            .horizontal-container::-webkit-scrollbar-thumb {
-                background: #ccc;
-                border-radius: 5px;
-            }
+            
 
             .horizontal-item {
                 text-align: center;
