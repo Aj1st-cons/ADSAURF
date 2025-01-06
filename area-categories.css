@@ -70,8 +70,9 @@
         .images-containerA1 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 5px;
             overflow-y: auto;
+            overflow-x: hidden;
             height: 100%; 
         }
 
@@ -90,6 +91,7 @@
 
         .images-containerA1 .popupA1-text {
             font-size: 12px;
+            white-space: wrap;
             font-weight: bold;
             color: black;
             margin-top: 5px;
