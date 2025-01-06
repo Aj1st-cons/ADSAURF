@@ -1,4 +1,4 @@
-.main-containerA1 {
+    .main-containerA1 {
             width: 100%;
             max-width: 400px;
             padding: 10px;
@@ -38,6 +38,7 @@
             color: #006400;
             white-space: wrap;
             line-height: 1;
+            
         }
 
         .overlayA1 {
