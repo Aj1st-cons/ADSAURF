@@ -1,4 +1,4 @@
-.main-containerA1 {
+.area-categories-container {
     position: relative; /* Can also use fixed if the element should always stay visible */
     width: 100vw; /* Ensures the container spans the full width of the viewport */
     white-space: nowrap;
