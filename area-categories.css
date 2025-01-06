@@ -1,10 +1,11 @@
-        .area-categories-container {
-            width: 100vw;
+.main-containerA1 {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
             white-space: nowrap;
             box-sizing: border-box;
-            box-shadow: 0 -4px 8px rgba(0.5, 0, 0, 0.5);
             background: linear-gradient(to bottom, #00950099, #ffffff);
-    }
+        }
 
         .category-containerA1 {
             display: grid;
@@ -29,7 +30,7 @@
         }
 
         .categoryA1-text {
-            font-family: Sans-serif;            
+            font-family: sans-serif;
             font-weight: bold;
             margin-top: 5px;
             font-size: 10px;
