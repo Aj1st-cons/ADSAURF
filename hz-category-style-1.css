@@ -1,8 +1,8 @@
 
             .subcategory2-container {
                 background: linear-gradient(to right, #ff000025, #ffffff 50%, #ff000025)
-                padding: 10px;
-                margin: 0px;
+                padding: 0px;
+                margin-top: 10px;
                 max-width: 100%;
                 box-sizing: border-box;
             }
