@@ -4,7 +4,7 @@
             padding: 10px;
             white-space: nowrap;
             box-sizing: border-box;
-            box-shadow: 0 -4px 8px rgba(1, 0, 0, 0.5);
+            box-shadow: 0 -4px 8px rgba(1, 0.5, 0.5, 1);
             background: linear-gradient(to bottom, #009500, #ffffff);
         }
 
