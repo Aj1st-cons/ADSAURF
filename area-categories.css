@@ -1,10 +1,9 @@
 .main-containerA1 {
             width: 100%;
-            max-width: 1000px;
-            padding: 10px;
+            
             white-space: nowrap;
             box-sizing: border-box;
-            box-shadow: 0 4px 8px rgba(1, 0, 0, 0);
+            box-shadow: 0 -4px 8px rgba(1, 0, 0, 0.5);
             background: linear-gradient(to bottom, #00950099, #ffffff);
         }
 
