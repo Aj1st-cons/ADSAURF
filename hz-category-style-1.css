@@ -24,7 +24,7 @@
             .horizontal-item {
                 text-align: center;
                 width: 100px;
-                height: 130px;
+                height: 110px;
             }
 
             .horizontal-item .image-space {
@@ -51,6 +51,7 @@
                 font-weight: bold;
                 color: #000;
                 margin-top: 5px;
+                line-height: 1em;
             }
 
             .sub-category {
