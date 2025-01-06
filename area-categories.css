@@ -11,7 +11,7 @@
         .category-containerA1 {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
+            gap: 5px;
             margin-top: 10px;
             overflow-x: auto;
         }
