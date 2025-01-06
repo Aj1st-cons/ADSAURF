@@ -1,11 +1,13 @@
 .main-containerA1 {
-            width: 100%;
-            
-            white-space: nowrap;
-            box-sizing: border-box;
-            box-shadow: 0 -4px 8px rgba(1, 0, 0, 0.5);
-            background: linear-gradient(to bottom, #00950099, #ffffff);
-        }
+    position: relative; /* Can also use fixed if the element should always stay visible */
+    width: 100vw; /* Ensures the container spans the full width of the viewport */
+    white-space: nowrap;
+    box-sizing: border-box;
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5); /* Corrected rgba syntax */
+    background: linear-gradient(to bottom, #00950099, #ffffff);
+}
 
         .category-containerA1 {
             display: grid;
