@@ -11,7 +11,7 @@
         .category-containerA1 {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 5px;
+            gap: 25px;
             margin-top: 10px;
             overflow-x: auto;
         }
@@ -20,8 +20,8 @@
             text-align: center;
             cursor: pointer;
             position: relative;
-            margin-left: 10px;
-            margin-right: 10px;
+            margin-left: 0px;
+            margin-right: 0px;
         }
 
         .categoryA1 img {
