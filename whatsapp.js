@@ -16,7 +16,7 @@ whatsappIcon.style.zIndex = '1000';
 
 // Add an image to the icon
 const whatsappImage = document.createElement('img');
-whatsappImage.src = 'https://cdn.shopify.com/s/files/1/0702/6055/5812/files/1736252219893.png?v=1736252260'; // Replace with your image link
+whatsappImage.src = 'https://cdn.shopify.com/s/files/1/0702/6055/5812/files/1736252219893.png?v=1736252784'; // Replace with your image link
 whatsappImage.alt = 'WhatsApp Icon';
 whatsappImage.style.width = '100%';
 whatsappImage.style.height = '100%';
