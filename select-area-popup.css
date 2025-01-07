@@ -216,7 +216,7 @@
     .delivery-card {
         width: auto; 
         padding: 10px; 
-        margin-left: 0px;
+        margin-left: -100px;
     }
 
     .delivery-card-container {
