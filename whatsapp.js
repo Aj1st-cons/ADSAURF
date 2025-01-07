@@ -1,10 +1,10 @@
 // Create the floating WhatsApp icon
 const whatsappIcon = document.createElement('div');
 whatsappIcon.style.position = 'fixed';
-whatsappIcon.style.bottom = '25%';
-whatsappIcon.style.right = '20px';
-whatsappIcon.style.width = '80px';
-whatsappIcon.style.height = '80px';
+whatsappIcon.style.bottom = '20%';
+whatsappIcon.style.right = '5px';
+whatsappIcon.style.width = '70px';
+whatsappIcon.style.height = '70px';
 whatsappIcon.style.backgroundColor = '';
 whatsappIcon.style.borderRadius = '0';
 whatsappIcon.style.display = 'flex';
