@@ -21,6 +21,7 @@
   text-align: center; 
   width: 80px; 
   height: 80px;
+  margin-bottom: -10px;
 }
 
 .vertical-item .image-space {
