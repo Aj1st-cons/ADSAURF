@@ -27,7 +27,7 @@ whatsappIcon.appendChild(whatsappImage);
 whatsappIcon.addEventListener('click', () => {
   const phoneNumber = '+971509880960';
   
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}`;
   window.open(whatsappUrl, '_blank');
 });
 
