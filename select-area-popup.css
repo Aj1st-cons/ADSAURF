@@ -191,13 +191,13 @@
     @media (min-width: 768px) {
     .delivery-heading {
         margin-top: 20px;
-        margin-left: 400px;
+        margin-left: 0px;
     }
     .popup-header {     
         top: -10px;
     }
     .location-icon {
-        margin-left: 400px;
+        margin-left: 0px;
     }
     .location-select {      
       margin-top: -10px;
