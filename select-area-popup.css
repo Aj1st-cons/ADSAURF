@@ -1,14 +1,3 @@
-    .delivery-card {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    padding: 10px; 
-    background-color: #000; 
-    border-radius: 10px; 
-    max-width: 400px;       
-    margin: 0 auto; 
-    box-sizing: border-box; 
-}
     .delivery-heading {
       font-size: 24px;
       color: #009500;
