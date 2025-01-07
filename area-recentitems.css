@@ -1,7 +1,10 @@
     .recent-container {
   background: #fff;
   border-radius: 3px;  
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0px 10px 10px -5px #00950050,   /* Top shadow */
+    inset 0px -10px 10px -5px #00950025,  /* Bottom shadow */
+    inset 10px 0px 10px -5px #00950050,   /* Left shadow */
+    inset -10px 0px 10px -5px #00950050;  /* Right shadow */
 }
 
 .vertical-container {
