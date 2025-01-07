@@ -2,9 +2,9 @@
 const whatsappIcon = document.createElement('div');
 whatsappIcon.style.position = 'fixed';
 whatsappIcon.style.bottom = '20%';
-whatsappIcon.style.right = '5px';
-whatsappIcon.style.width = '70px';
-whatsappIcon.style.height = '70px';
+whatsappIcon.style.right = '1px';
+whatsappIcon.style.width = '60px';
+whatsappIcon.style.height = '60px';
 whatsappIcon.style.backgroundColor = '';
 whatsappIcon.style.borderRadius = '0';
 whatsappIcon.style.display = 'flex';
