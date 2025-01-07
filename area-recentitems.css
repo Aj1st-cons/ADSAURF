@@ -2,7 +2,7 @@
   background: #fff;
   border-radius: 3px;  
   box-shadow: inset 0px 10px 10px -5px #00950050,   /* Top shadow */
-    inset 0px -10px 10px -5px #00950025,  /* Bottom shadow */
+    inset 0px -10px 10px -5px #00950050,  /* Bottom shadow */
     inset 10px 0px 10px -5px #00950050,   /* Left shadow */
     inset -10px 0px 10px -5px #00950050;  /* Right shadow */
 }
