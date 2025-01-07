@@ -5,12 +5,12 @@ whatsappIcon.style.bottom = '25%';
 whatsappIcon.style.right = '20px';
 whatsappIcon.style.width = '60px';
 whatsappIcon.style.height = '60px';
-whatsappIcon.style.backgroundColor = '#25D366';
-whatsappIcon.style.borderRadius = '50%';
+whatsappIcon.style.backgroundColor = '';
+whatsappIcon.style.borderRadius = '0';
 whatsappIcon.style.display = 'flex';
 whatsappIcon.style.justifyContent = 'center';
 whatsappIcon.style.alignItems = 'center';
-whatsappIcon.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+whatsappIcon.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0)';
 whatsappIcon.style.cursor = 'pointer';
 whatsappIcon.style.zIndex = '1000';
 
@@ -20,7 +20,7 @@ whatsappImage.src = 'https://cdn.shopify.com/s/files/1/0702/6055/5812/files/1736
 whatsappImage.alt = 'WhatsApp Icon';
 whatsappImage.style.width = '100%';
 whatsappImage.style.height = '100%';
-whatsappImage.style.borderRadius = '50%';
+whatsappImage.style.borderRadius = '0';
 whatsappIcon.appendChild(whatsappImage);
 
 // Add click functionality to open WhatsApp
