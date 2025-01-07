@@ -47,12 +47,15 @@
   font-weight: bold; 
   color: #1e90ff; 
   margin-top: 5px;
+  white-space: wrap;
+  line-height: 0.9em;
 }
 
 .vertical-item .price {
   font-size: 10px; 
   font-weight: bold; 
-  color: #1e90ff;
+  color: #009500;
+  margin-top: 5px;
 }
 
    @media (min-width: 768px) 
