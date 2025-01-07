@@ -26,9 +26,7 @@ whatsappIcon.appendChild(whatsappImage);
 // Add click functionality to open WhatsApp
 whatsappIcon.addEventListener('click', () => {
   const phoneNumber = '+971509880960';
-  const message = encodeURIComponent(
-    `Hi, Welcome to ADSAURF! (We are available till 10:00 pm everyday!)\n\nPlease enter your message to start chat with us..`
-  );
+  
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
   window.open(whatsappUrl, '_blank');
 });
