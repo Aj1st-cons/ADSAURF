@@ -19,21 +19,21 @@
 
 .vertical-item {
   text-align: center; 
-  width: 100px; 
-  height: 100px;
+  width: 90px; 
+  height: 90px;
 }
 
 .vertical-item .image-space {
-  width: 100px; 
-  height: 100px; 
+  width: 90px; 
+  height: 90px; 
   display: inline-block;
   background: linear-gradient(to bottom right, #00950025, #ffffff);
   border-radius: 10px;
 }
 
 .vertical-item img {
-  width: 80%; 
-  height: 80%; 
+  width: 100%; 
+  height: 100%; 
   display: block;
   padding: 10px;
 }
