@@ -42,7 +42,7 @@ function adjustWhatsAppIconPosition(e) {
   if (e.matches) {
     // Viewport width is 768px or wider
     const windowWidth = window.innerWidth;
-    const iconPositionFromCenter = 280; // Distance from the center
+    const iconPositionFromCenter = 260; // Distance from the center
     const centerPosition = windowWidth / 2;
 
     // Position the icon 280px to the right of the center
