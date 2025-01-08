@@ -35,37 +35,31 @@ whatsappIcon.addEventListener('click', () => {
 document.body.appendChild(whatsappIcon);
 
 // Define the media query
-const mediaQuery = window.matchMedia("(max-width: 600px)");
+const mediaQuery = window.matchMedia("(min-width: 768px)");
 
-// Function to handle the position adjustment
-function adjustWhatsAppIcon(e) {
+// Function to adjust the position of the WhatsApp icon
+function adjustWhatsAppIconPosition(e) {
   if (e.matches) {
-    // Centered max-width adjustment for smaller screens
+    // Viewport width is 768px or wider
     const windowWidth = window.innerWidth;
-    const maxWidth = 600;
+    const iconPositionFromCenter = 280; // Distance from the center
+    const centerPosition = windowWidth / 2;
 
-    // Calculate left offset for centered alignment
-    const leftOffset = (windowWidth - maxWidth) / 2;
-
-    if (leftOffset > 0) {
-      whatsappIcon.style.right = 'auto';
-      whatsappIcon.style.left = `${leftOffset + maxWidth - 60}px`; // Align to the edge of the max-width area
-    } else {
-      whatsappIcon.style.right = '1px'; // Default position when screen width is less than max-width
-      whatsappIcon.style.left = 'auto';
-    }
+    // Position the icon 280px to the right of the center
+    whatsappIcon.style.left = `${centerPosition + iconPositionFromCenter}px`;
+    whatsappIcon.style.right = 'auto'; // Disable right positioning
   } else {
-    // Restore position for larger screens
+    // Viewport width is less than 768px, reset to default
     whatsappIcon.style.right = '1px';
     whatsappIcon.style.left = 'auto';
   }
 }
 
 // Initial adjustment
-adjustWhatsAppIcon(mediaQuery);
+adjustWhatsAppIconPosition(mediaQuery);
 
-// Listen for changes in the viewport size
-mediaQuery.addEventListener('change', adjustWhatsAppIcon);
+// Listen for viewport changes
+mediaQuery.addEventListener('change', adjustWhatsAppIconPosition);
 
 // Ensure adjustment when resizing the browser
-window.addEventListener('resize', () => adjustWhatsAppIcon(mediaQuery));
+window.addEventListener('resize', () => adjustWhatsAppIconPosition(mediaQuery));
