@@ -33,3 +33,39 @@ whatsappIcon.addEventListener('click', () => {
 
 // Add the WhatsApp icon to the body of the document
 document.body.appendChild(whatsappIcon);
+
+// Define the media query
+const mediaQuery = window.matchMedia("(max-width: 600px)");
+
+// Function to handle the position adjustment
+function adjustWhatsAppIcon(e) {
+  if (e.matches) {
+    // Centered max-width adjustment for smaller screens
+    const windowWidth = window.innerWidth;
+    const maxWidth = 600;
+
+    // Calculate left offset for centered alignment
+    const leftOffset = (windowWidth - maxWidth) / 2;
+
+    if (leftOffset > 0) {
+      whatsappIcon.style.right = 'auto';
+      whatsappIcon.style.left = `${leftOffset + maxWidth - 60}px`; // Align to the edge of the max-width area
+    } else {
+      whatsappIcon.style.right = '1px'; // Default position when screen width is less than max-width
+      whatsappIcon.style.left = 'auto';
+    }
+  } else {
+    // Restore position for larger screens
+    whatsappIcon.style.right = '1px';
+    whatsappIcon.style.left = 'auto';
+  }
+}
+
+// Initial adjustment
+adjustWhatsAppIcon(mediaQuery);
+
+// Listen for changes in the viewport size
+mediaQuery.addEventListener('change', adjustWhatsAppIcon);
+
+// Ensure adjustment when resizing the browser
+window.addEventListener('resize', () => adjustWhatsAppIcon(mediaQuery));
