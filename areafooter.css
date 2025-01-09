@@ -28,7 +28,7 @@
        width: 30px; 
        height: 30px; 
        object-fit: cover; 
-       margin-bottom: 0px;
+       margin-bottom: 5px;
     }  
     .fullscreen-menu {
        visibility: hidden; 
