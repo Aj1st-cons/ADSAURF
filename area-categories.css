@@ -1,6 +1,7 @@
     .main-containerA1 {
             width: 100%;
             max-width: 400px;
+            border-radius: 5px;
             padding: 10px;
             white-space: nowrap;
             box-sizing: border-box;
