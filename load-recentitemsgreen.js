@@ -1,14 +1,9 @@
-// loadItems.js
-document.addEventListener("DOMContentLoaded", function () {
-  const container = document.getElementById("vertical-container");
-
-  // Fetch items.html file and load its content into the container
-  fetch('https://adsaurf.pages.dev/recentitemsgreen.html')
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("items-container");
+  fetch("https://adsaurf.pages.dev/recentitemsgreen.html")
     .then(response => response.text())
-    .then(data => {
-      container.innerHTML = data;
+    .then(html => {
+      container.innerHTML = html;
     })
-    .catch(error => {
-      console.error('Error loading items:', error);
-    });
+    .catch(error => console.error("Error loading items:", error));
 });
