@@ -1,0 +1,78 @@
+        .recent-container {
+  background: linear-gradient(to top right, #00950075, #fff);
+  border-radius: 10px;  
+  box-shadow: inset 0px 10px 10px -5px #00950050,   /* Top shadow */
+    inset 0px -10px 10px -5px #00950050,  /* Bottom shadow */
+    inset 10px 0px 10px -5px #00950050,   /* Left shadow */
+    inset -10px 0px 10px -5px #00950050;  /* Right shadow */
+}
+
+.vertical-container {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(2, 120px);
+  grid-auto-flow: column; 
+  column-gap: 75px;
+  justify-content: start; 
+  padding: 0 30px;
+  overflow-x: auto;
+  overflow-y: hidden; 
+  
+}
+
+.vertical-item {
+  margin-left: -50px;
+  margin-right: -50px;
+  text-align: center; 
+  width: 80px; 
+  height: 80px;
+  
+}
+
+.vertical-item .image-space {
+  width: 80px; 
+  height: 80px; 
+  display: inline-block;
+  background: radial-gradient(circle, #00950050, #00950000);
+  border-radius: 50px;
+}
+
+.vertical-item img {
+  width: 90%; 
+  height: 90%; 
+  display: block;
+  padding: 2px;
+}
+
+.vertical-item a {
+  text-decoration: none;
+}
+
+.vertical-item .name {
+  font-size: 9px;
+  font-weight: bold; 
+  color: #1e90ff; 
+  margin-top: 5px;
+  white-space: wrap;
+  line-height: 0.9em;
+}
+
+.vertical-item .price {
+  font-size: 10px; 
+  font-weight: bold; 
+  color: #009500;
+  margin-top: 5px;
+}
+
+   @media (min-width: 768px) 
+        {
+    .vertical-container  {
+      justify-content: center;}
+      
+      .center-h1 {
+        text-align: center !important;
+        margin-left: 0 !important;
+      }
+    }    
