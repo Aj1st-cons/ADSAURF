@@ -85,11 +85,6 @@
       position: relative;
       border-radius: 10px;
       text-align: left;
-      box-shadow: 
-        -1px -1px 0 white, 
-        1px -1px 0 white, 
-        -1px 1px 0 white, 
-        1px 1px 0 white;
     }
     .card {
       position: absolute;
@@ -101,6 +96,11 @@
       justify-content: center;
       align-items: center;
       background: linear-gradient(to right, #009500, #ffffff);
+      box-shadow: 
+        -1px -1px 0 white, 
+        1px -1px 0 white, 
+        -1px 1px 0 white, 
+        1px 1px 0 white;
       color: white;
       font-weight: bold;
       border-radius: 10px;
