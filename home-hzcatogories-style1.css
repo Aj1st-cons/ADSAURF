@@ -19,7 +19,7 @@
   grid-auto-flow: column; 
   column-gap: 25px;
   justify-content: start; 
-  padding: 0 10px;
+  
   overflow-x: auto;
   overflow-y: hidden; 
   
