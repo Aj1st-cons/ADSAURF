@@ -2,8 +2,10 @@
  width: cal(100% -10px);
  max-width: 600px;
  margin: 0 auto;
- padding: 10px;  
- font-family: 'PT Sans', sans-serif;
+ padding: 10px; 
+ margin-left: -10px;
+ margin-right: -10px;
+  font-family: 'PT Sans', sans-serif;
   background: linear-gradient(to top right, #00950050, #fff);
   border-radius: 10px;  
   box-shadow: inset 0px 10px 10px -5px #00950050,   /* Top shadow */
