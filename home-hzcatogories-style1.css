@@ -1,5 +1,5 @@
   .hz-categories {
- width: 100%;
+ width: cal(100% -10px);
  max-width: 600px;
  margin: 0 auto;
  padding: 10px;  
