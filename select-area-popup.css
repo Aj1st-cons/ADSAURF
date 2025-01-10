@@ -1,9 +1,10 @@
     .delivery-heading {
       font-size: 34px;
       font-family: 'Oswald', sans-serif;
-      background-color: #fff;
+      
       font-weight: 700;
       margin: 10px; 
+      margin-left: 10px;
       margin-top: 10px;     
     }
     .location-container {
