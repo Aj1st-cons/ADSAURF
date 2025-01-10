@@ -2,6 +2,11 @@
       font-size: 34px;
       font-family: 'Oswald', sans-serif;
       color: #009500;
+      text-shadow: 
+        -1px -1px 0 white, 
+        1px -1px 0 white, 
+        -1px 1px 0 white, 
+        1px 1px 0 white;
       font-weight: 700;
       margin: 10px; 
       margin-left: 50px;
