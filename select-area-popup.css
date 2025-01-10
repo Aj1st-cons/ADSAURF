@@ -84,7 +84,12 @@
       overflow: hidden;
       position: relative;
       border-radius: 10px;
-      
+      text-align: left;
+      box-shadow: 
+        -1px -1px 0 white, 
+        1px -1px 0 white, 
+        -1px 1px 0 white, 
+        1px 1px 0 white;
     }
     .card {
       position: absolute;
