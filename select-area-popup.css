@@ -110,6 +110,7 @@
       margin-right: 10px;
       margin-left: 5px;
       margin-top: 20px;
+      margin-bottom: 2px;
     }
     .card.active {
       transform: translateY(0);
