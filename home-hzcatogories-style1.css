@@ -1,6 +1,4 @@
   .hz-categories {
- width: calc(100% -20px);
- max-width: 600px;
  margin: 0 auto;
  padding: 10px; 
   font-family: 'PT Sans', sans-serif;
@@ -18,9 +16,7 @@
   grid-template-rows: repeat(1, 120px);
   grid-auto-flow: column; 
   column-gap: 25px;
-  justify-content: start; 
-  margin-left: -10px; 
-  margin-right: -10px;   
+  justify-content: start;    
   overflow-x: auto;
   overflow-y: hidden; 
   
