@@ -2,7 +2,7 @@
  width: 100%;
  max-width: 600px;
  margin: 0 auto;
- 
+ font-family: 'PT Sans', sans-serif;
   background: linear-gradient(to top right, #00950050, #fff);
   border-radius: 10px;  
   box-shadow: inset 0px 10px 10px -5px #00950050,   /* Top shadow */
@@ -74,7 +74,8 @@
                 color: #1e90ff;
                 font-weight: bold;
                 font-size: 16px;
-            font-style: italic;
+                margin-left: 20px;
+                font-style: italic;
             }
 
             .hz-title a {
