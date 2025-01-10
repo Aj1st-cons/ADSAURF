@@ -14,18 +14,16 @@
   display: grid;
   grid-template-rows: repeat(2, 120px);
   grid-auto-flow: column; 
-  column-gap: 75px;
+  column-gap: 15px;
   justify-content: start; 
-  padding: 0 5px;
+  padding: 5px;
   overflow-x: auto;
   overflow-y: hidden; 
   
 }
 
 .vertical-item {
-  margin-left: -50px;
-  margin-right: -50px;
-  text-align: center; 
+  
   width: 80px; 
   height: 80px;
   
