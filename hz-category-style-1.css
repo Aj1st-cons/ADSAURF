@@ -4,7 +4,7 @@
   margin: 0 auto;
   height: auto;
   border-radius: 5px;
-  background-color: #00950000;             
+  background: linear-gradient(to right, #00950025, #fff 50%);             
   margin-top: 2px;
   padding-left: 10px;              
   padding-right: 10px;
