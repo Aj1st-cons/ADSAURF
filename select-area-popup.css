@@ -1,5 +1,5 @@
     .delivery-heading {
-      font-size: 26px;
+      font-size: 24px;
       font-family: 'Oswald', sans-serif;
       color: #009500;
       text-shadow: 
@@ -22,6 +22,7 @@
       display: flex;
       align-items: left;
       margin-top: 0px;
+      margin-left: -8px;
     }
     .location-select {
       position: relative;
