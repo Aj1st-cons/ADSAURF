@@ -123,7 +123,7 @@
                  
                   /* popup */       
         .popup {
-            font-family: 'Krona One', sans-serif;
+            font-family: sans-serif;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -157,12 +157,13 @@
 
         .close-link, .back-link {
             color: red;
+            font-family: sans-serif;
             text-decoration: none;
             font-weight: bold;
             font-size: 10px;
             position: absolute;
-            right: 10px;       
-            top: 10px;
+            right: 5px;       
+            top: 5px;
         }
 
         .popup-title {
