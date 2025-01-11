@@ -1,5 +1,5 @@
     .delivery-heading {
-      font-size: 34px;
+      font-size: 26px;
       font-family: 'Oswald', sans-serif;
       color: #009500;
       text-shadow: 
@@ -9,7 +9,7 @@
         1px 1px 0 white;
       font-weight: 700;
       margin: 10px; 
-      margin-left: 10px;
+      margin-left: 5px;
       margin-top: 10px;     
     }
     .location-container {
@@ -107,8 +107,8 @@
       transform: translateY(100%);
       opacity: 0;
       transition: all 0.8s ease-in-out;
-      margin-right: 10px;
-      margin-left: 5px;
+      margin-right: 5px;
+      margin-left: 0px;
       margin-top: 20px;
       margin-bottom: 2px;
     }
