@@ -27,7 +27,7 @@
     }
     .location-select {
       position: relative;
-      margin-top: -10px;
+      margin-top: -20px;
       margin-left: -10px;
     }
     .location-button {
@@ -220,7 +220,7 @@
         margin-left: 0px;
     }
     .location-select {      
-      margin-top: 40px;
+      margin-bottom: -40px;
     }
     .delivery-card {
         width: auto; 
