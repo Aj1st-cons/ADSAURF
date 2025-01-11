@@ -111,7 +111,7 @@
       opacity: 0;
       transition: all 0.8s ease-in-out;
       margin-right: 5px;
-      margin-left: 0px;
+      margin-left: 1px;
       margin-top: 20px;
       margin-bottom: 2px;
     }
