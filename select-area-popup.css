@@ -217,10 +217,10 @@
         top: -10px;
     }
     .location-icon {
-        margin-left: 10px;
+        margin-left: -15px;
     }
     .location-select {      
-      margin-bottom: -12px;
+      margin-bottom: -15px;
     }
     .delivery-card {
         width: auto; 
