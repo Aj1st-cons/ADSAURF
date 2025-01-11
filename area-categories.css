@@ -5,7 +5,7 @@
             padding: 10px;
             white-space: nowrap;
             box-sizing: border-box;
-            
+            font-weight: bold;
             background: linear-gradient(to bottom, #009500, #fff);
         }
 
