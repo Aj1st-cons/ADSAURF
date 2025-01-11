@@ -179,11 +179,13 @@
         }
 
         .popup-content {
+            font-weight: bold;
             margin-top: 40px;
             padding: 10px;
             overflow-y: auto;
             height: 520px;
             text-align: left;
+            line-height: 1;
         }
 
         .popup-content a {
