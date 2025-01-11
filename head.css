@@ -70,6 +70,7 @@
             font-weight: bold;
             margin-top: 5px; /* Added spacing for better layout */
             line-height: 1em;            
+            background: #00950050;
         }
 
         .location-section svg {
