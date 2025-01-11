@@ -67,7 +67,9 @@
         .location-section {
             text-align: center;
             width: 100%;
-            max-width: 600px;            font-weight: bold;
+            max-width: 600px; 
+            margin: 0 auto;
+            font-weight: bold;
             margin-top: 5px; /* Added spacing for better layout */
             line-height: 1em;            
             background: #00950050;
