@@ -185,7 +185,7 @@
             overflow-y: auto;
             height: 520px;
             text-align: left;
-            line-height: 1;
+            line-height: 1.2;
         }
 
         .popup-content a {
@@ -219,7 +219,7 @@
         margin-left: 0px;
     }
     .location-select {      
-      margin-top: 0px;
+      margin-top: 10px;
     }
     .delivery-card {
         width: auto; 
