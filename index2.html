@@ -41,8 +41,10 @@
 
     // Function to fetch and display areas for the selected city
     function fetchAreas(city) {
+      const url = `https://adsaurf.pages.dev/${city}.html`;  // Change the base URL to the actual location
+
       // Fetch the HTML content for the selected city's areas (e.g., Abudhabi.html)
-      fetch(`${city}.html`)
+      fetch(url)
         .then(response => response.text())
         .then(data => {
           // Inject the content from the city HTML file into the areas div
