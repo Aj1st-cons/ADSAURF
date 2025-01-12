@@ -3,18 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>City 1 - Area 1</title>
+  <title>City 1 - Area 1</title></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome</h1>
+  <h1>Welcome to City 1 - Area 1</h1>
+  
+  <!-- Display the current area here -->
+  <p id="current-area">current area: <span id="area-name"></span></p>
+  
+  <!-- Button to change city -->
   <button onclick="changeCity()">Change City</button>
-  <p id="current-selection"></p>
+  
   <script>
+    // Display the current selected area
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedArea = localStorage.getItem("selectedArea");
+      if (savedArea) {
+        // Extract area name or path from saved area URL and show it
+        const areaName = savedArea.split('/').pop().replace('.html', '').replace('_', ' ').toUpperCase();
+        document.getElementById("area-name").textContent = areaName;
+      } else {
+        document.getElementById("area-name").textContent = "No area selected";
+      }
+    });
+
+    // Change city function
     function changeCity() {
-      // Clear the saved area
+      // Clear the saved area from local storage
       localStorage.removeItem("selectedArea");
       // Redirect to the city selection screen
-      window.location.href = 'https://adsaurf.pages.dev/index.html';
+      window.location.href = '/index.html';
     }
   </script>
 </body>
