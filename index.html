@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City and Area Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedArea = localStorage.getItem("selectedArea");
+      if (savedArea) {
+        // Redirect to the saved area
+        window.location.href = savedArea;
+      } else {
+        // Show the welcome screen and city selection
+        document.getElementById("welcome").classList.remove("hidden");
+      }
+    });
+
+    function selectCity(city) {
+      document.getElementById("city-selection").classList.add("hidden");
+      document.getElementById(`areas-${city}`).classList.remove("hidden");
+    }
+
+    function selectArea(areaLink) {
+      localStorage.setItem("selectedArea", areaLink);
+      window.location.href = areaLink; // Navigate to the area page
+    }
+  </script>
+</head>
+<body>
+  <div id="welcome" class="hidden">
+    <h1>Welcome to the City Selector</h1>
+    <p>Redirecting in 2 seconds...</p>
+    <script>
+      setTimeout(() => {
+        document.getElementById("welcome").classList.add("hidden");
+        document.getElementById("city-selection").classList.remove("hidden");
+      }, 2000);
+    </script>
+  </div>
+
+  <div id="city-selection" class="hidden">
+    <h2>Select Your City</h2>
+    <button onclick="selectCity('city1')">City 1</button>
+    <button onclick="selectCity('city2')">City 2</button>
+  </div>
+
+  <div id="areas-city1" class="hidden">
+    <h2>Select Area in City 1</h2>
+    <button onclick="selectArea('https://adsaurf.pages.dev/city1-area1.html')">City 1 - Area 1</button>
+    <button onclick="selectArea('/areas/city1_area2.html')">City 1 - Area 2</button>
+  </div>
+
+  <div id="areas-city2" class="hidden">
+    <h2>Select Area in City 2</h2>
+    <button onclick="selectArea('/areas/city2_area1.html')">City 2 - Area 1</button>
+    <button onclick="selectArea('/areas/city2_area2.html')">City 2 - Area 2</button>
+  </div>
+</body>
+</html>
