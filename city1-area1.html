@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City 1 - Area 1</title>
+</head>
+<body>
+  <h1>Welcome to City 1 - Area 1</h1>
+  <button onclick="changeCity()">Change City</button>
+  <script>
+    function changeCity() {
+      // Clear the saved area
+      localStorage.removeItem("selectedArea");
+      // Redirect to the city selection screen
+      window.location.href = 'https://adsaurf.pages.dev/index.html';
+    }
+  </script>
+</body>
+</html>
