@@ -1,0 +1,129 @@
+        body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    justify-content: center; 
+    gap: 20px; /* Default gap for smaller screens */
+    width: calc(100% - 120px); /* Ensures equal spacing on both sides (60px each) */
+    margin: 0 auto; /* Horizontally centers the grid */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Equal shadow on all sides */
+    border-radius: 8px;
+    text-align: center;
+    padding: 5px;            
+    cursor: pointer;
+    width: 90px;
+    height: 120px;
+    transition: transform 0.2s;            
+}
+
+.card:hover {
+    transform: scale(1.05);    
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.card p {
+    margin: 8px 0 0;
+    color: #009500;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Fullscreen popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: none; /* Hidden by default */
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    z-index: 10;
+}
+
+.popup-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    justify-content: center; 
+    gap: 20px; /* Default gap for smaller screens */
+    width: calc(100% - 120px); /* Ensures equal spacing on both sides (60px each) */
+    margin: 0 auto; /* Horizontally centers the grid */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.popup-card {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Equal shadow on all sides */
+    border-radius: 8px;
+    text-align: center;
+    padding: 5px;            
+    cursor: pointer;
+    width: 100px;
+    height: 140px;
+    transition: transform 0.2s;            
+}
+
+.popup-card:hover {
+    transform: scale(1.05); 
+}
+
+.popup-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; 
+}
+
+.popup-card p {
+    margin: 8px 0;
+    color: #009500;
+    font-weight: bold;
+    line-height: 0.8;
+    font-size: 12px;
+}
+
+/* Floating back button */
+.back-button {
+    position: fixed;
+    top: 25%;
+    right: 16px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.2s ease-in-out;
+}
+
+.back-button:hover {
+   transform translateY(-50%) scale(1.1);
+}
+
+/* Media query for larger screens (desktop) */
+@media (min-width: 768px) {
+   .categories-container, .popup-content {
+       display: grid;
+       grid-template-columns: repeat(3, auto); /* Ensures cards are sized automatically */
+       justify-content: center; /* Centers the group of cards horizontally */
+       gap: 60px; /* Maintains a consistent gap of 60px between cards */
+       margin-left:auto ;
+       margin-right:auto;
+   }
+}
