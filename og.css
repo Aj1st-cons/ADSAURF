@@ -107,7 +107,7 @@
 /* Floating back button */
 .back-button {
     position: fixed;
-    top: 25%;
+    top: 40%;
     right: 16px;
     transform: translateY(-50%);
     width: 60px;
