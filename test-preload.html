@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      background-color: white;
+      text-align: center;
+      border: 1px solid #000;
+      padding: 5px;
+    }
+
+    .header img {
+      width: 60px; /* Adjust as needed */
+      height: auto;
+    }
+
+    .header h1 {
+      color: #fff;
+      text-shadow: 1px 1px 2px black;
+      font-size: 14px;
+      margin-top: 0px;
+      margin-bottom: -1px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      padding: 1px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 70px;
+      z-index: 1000; /* Ensures it stays above other elements */
+    }
+
+    footer a {
+      color: white;
+      font-size: 24px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+    }
+
+    footer a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    footer a i {
+      font-size: 30px;
+    }
+  </style>
+<link href="https://adsaurf.pages.dev/og.css" rel="stylesheet">  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="header">
+    <img src="https://cdn.shopify.com/s/files/1/0702/6055/5812/files/1736594915178.png?v=1736594957" alt="Logo">
+    <h1>Online Grocery</h1>
+  </div>
+
+  <!-- Add content container for dynamic -->
+  <main id="content">
+       <div class="categories-container" id="categories">                                       
+       </div>    
+    
+<div id="popup1" class="popup">
+  <div class="popup-content" id="drinks">                
+            </div></div>
+<div id="popup2" class="popup">
+   <div class="popup-content" id="fruits">                
+            </div></div>      
+<div id="popup3" class="popup">
+   <div class="popup-content" id="vegitables">                                      
+            </div></div>      
+
+<script src="https://adsaurf.pages.dev/og.js"></script>        
+
+  </main>
+
+  <footer>
+    <a href="#" onclick="loadHomeContent()" aria-label="Home">
+      <i class="fas fa-home"></i>
+    </a>
+    <a href="#" aria-label="Cart">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+    <a href="#" aria-label="Profile">
+      <i class="fas fa-user"></i>
+    </a>
+  </footer>
+
+<script>
+  // Function to preload home content
+  function preloadHomeContent() {
+    const categories = document.getElementById('categories');
+    if (categories) {
+      categories.innerHTML = `
+        <div>
+          <h2>Categories</h2>
+          <ul>
+            <li>Drinks</li>
+            <li>Fruits</li>
+            <li>Vegetables</li>
+          </ul>
+        </div>
+      `;
+    }
+  }
+
+  // Function to display home content when "Home" is clicked
+  function loadHomeContent() {
+    const content = document.getElementById('content');
+
+    if (content) {
+      // Ensure the content is visible
+      content.style.display = 'block';
+
+      // Optionally, update or refresh the categories dynamically
+      const categories = document.getElementById('categories');
+      if (categories) {
+        categories.innerHTML = `
+          <div>
+            <h2>Categories</h2>
+            <ul>
+              <li>Drinks</li>
+              <li>Fruits</li>
+              <li>Vegetables</li>
+            </ul>
+          </div>
+        `;
+      }
+    } else {
+      console.error('Content container not found!');
+    }
+  }
+
+  // Preload home content when the page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    preloadHomeContent();
+  });
+</script>
+
+  </script>
+</body>
+</html>
