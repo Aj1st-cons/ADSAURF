@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 
-.card {
+.cardx {
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Equal shadow on all sides */
     border-radius: 8px;
@@ -29,17 +29,17 @@
     transition: transform 0.2s;            
 }
 
-.card:hover {
+.cardx:hover {
     transform: scale(1.05);    
 }
 
-.card img {
+.cardx img {
     width: 100%;
     height: auto;
     border-radius: 8px;
 }
 
-.card p {
+.cardx p {
     margin: 8px 0 0;
     color: #009500;
     font-weight: bold;
