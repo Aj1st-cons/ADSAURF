@@ -1,0 +1,192 @@
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+.header {
+    background-color: #f5f5f5;
+    text-align: center;
+    
+    padding: 10px 0; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+    .header img {
+      width: 60px; 
+      height: auto;
+    }
+    .header h1 {
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+      font-size: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        padding: 10px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 70px;
+        z-index: 20;
+    }
+footer a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+footer a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+footer a i {
+  font-size: 30px;
+}
+
+
+.cardx {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    padding: 2px;            
+    cursor: pointer;
+    width: 100px;
+    height: 120px;
+    transition: transform 0.2s;            
+}
+
+.cardx:hover {
+    transform: scale(1.05);    
+}
+
+.cardx img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.cardx p {
+    margin: -7px 0 0;
+    color: #009500;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.popup {
+    position: fixed;
+    top: 50px; 
+    left: 0;
+    width: 100%;
+    height: calc(100% - 100px); 
+    background-color: #ffffff;
+    display: none; 
+    overflow-y: auto;
+    overflow-x: hidden; 
+    z-index: 10;
+    padding-bottom: 60px; 
+    box-sizing: border-box;
+}
+
+.inner-popup {
+    position: fixed;
+    top: 50px; 
+    left: 0;
+    width: 100%;
+    height: calc(100% - 100px); 
+    background-color: #ffffff;
+    display: none; 
+    overflow-y: auto;
+    overflow-x: hidden; 
+    z-index: 10;
+    padding-bottom: 60px; 
+    box-sizing: border-box;
+}
+
+.popup-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    justify-content: center; 
+    gap: 20px; 
+    width: calc(100% - 120px);
+    margin: 0 auto; 
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.popup-card {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px;
+    text-align: center;
+    padding: 2px;            
+    cursor: pointer;
+    width: 100px;
+    height: 140px;
+    transition: transform 0.2s;            
+}
+
+.popup-card:hover {
+    transform: scale(1.05); 
+}
+
+.popup-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; 
+}
+
+.popup-card p {
+    margin: 3px 0;
+    color: #009500;
+    font-weight: bold;
+    line-height: 1;
+    font-size: 12px;
+}
+
+/* Floating back button */
+.back-button {
+    position: fixed;
+    top: 40%;
+    right: 16px;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.2s ease-in-out;
+}
+
+.back-button:hover {
+   transform translateY(-50%) scale(1.1);
+}
+
+/* Media query for larger screens (desktop) */
+@media (min-width: 768px) {
+   .categories-container, .popup-content {
+       display: grid;
+       grid-template-columns: repeat(3, auto); /* Ensures cards are sized automatically */
+       justify-content: center; /* Centers the group of cards horizontally */
+       gap: 60px; /* Maintains a consistent gap of 60px between cards */
+       margin-left:auto ;
+       margin-right:auto;
+   }
+  }
