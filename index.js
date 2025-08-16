@@ -1,113 +1,104 @@
 import express from "express";
 import fetch from "node-fetch";
-import multer from "multer";
 import cors from "cors";
-import fs from "fs";
 
 const app = express();
-const upload = multer({ dest: "uploads/" });
-
 app.use(cors());
+app.use(express.json());
 
-// Shopify API
-const SHOPIFY_API =
-  "https://nearbys.online/admin/api/2025-01/custom_collections.json";
-const SHOPIFY_TOKEN = process.env.SHOPIFY_ADMIN_TOKEN;
+// ==================== CONFIG ====================
+const SHOPIFY_STORE = "adsaurf.myshopify.com"; // replace with your store
+const SHOPIFY_ADMIN_API_VERSION = "2025-01";   // update if newer
+const SHOPIFY_ADMIN_API_TOKEN = process.env.SHOPIFY_ADMIN_API_TOKEN; // set in Railway
+// =================================================
 
-// Vendors memory
-let vendors = {};
-try {
-  const mod = await import("./let-vendors.js");
-  vendors = mod.vendors;
-} catch (err) {
-  console.warn("⚠️ No vendors file found, starting with empty vendors.");
-  vendors = {};
-}
+// ✅ Endpoint to create collection in Shopify + update vendors
+app.post("/create-collection", async (req, res) => {
+  const { name, imageBase64, template, vendor } = req.body;
 
-// Health check
-app.get("/", (req, res) => {
-  res.send("✅ Backend is running");
-});
+  if (!name || !template) {
+    return res.status(400).json({ error: "Name and template are required" });
+  }
 
-// Return vendors JSON
-app.get("/vendors", (req, res) => {
-  res.json(vendors);
-});
+  try {
+    // -------------------
+    // 1️⃣ Create collection in Shopify
+    // -------------------
+    const shopifyPayload = {
+      custom_collection: {
+        title: name,
+        template_suffix: template, // e.g. "Grocery"
+        published: true,
+        image: imageBase64
+          ? {
+              attachment: imageBase64, // expects base64 without "data:image/png;base64,"
+            }
+          : undefined,
+      },
+    };
 
-// Create Shopify collection + update vendors
-app.post(
-  "/create-collection",
-  upload.single("image"),
-  async (req, res) => {
-    try {
-      const { storeName, storeType, lat, lng } = req.body;
-      const imageFile = req.file;
-
-      if (!storeName || !storeType || !lat || !lng || !imageFile) {
-        return res.status(400).json({
-          error: "❌ Missing storeName, storeType, lat, lng, or image",
-          body: req.body,
-        });
-      }
-
-      // Read image
-      const imgBase64 = fs.readFileSync(imageFile.path, "base64");
-
-      // Create Shopify collection
-      const collectionRes = await fetch(SHOPIFY_API, {
+    const shopifyResponse = await fetch(
+      `https://${SHOPIFY_STORE}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/custom_collections.json`,
+      {
         method: "POST",
         headers: {
-          "X-Shopify-Access-Token": SHOPIFY_TOKEN,
+          "X-Shopify-Access-Token": SHOPIFY_ADMIN_API_TOKEN,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          custom_collection: {
-            title: storeName,
-            template_suffix: storeType, // only suffix (e.g. "Grocery")
-            image: { attachment: imgBase64 },
-          },
-        }),
+        body: JSON.stringify(shopifyPayload),
+      }
+    );
+
+    const shopifyData = await shopifyResponse.json();
+    console.log("🔎 Shopify raw response:", JSON.stringify(shopifyData));
+
+    if (!shopifyResponse.ok) {
+      return res.status(shopifyResponse.status).json({
+        error: "Failed to create collection in Shopify",
+        details: shopifyData,
       });
-
-      const collectionText = await collectionRes.text();
-console.log("🔎 Shopify raw response:", collectionText);
-
-let collectionData;
-try {
-  collectionData = JSON.parse(collectionText);
-} catch {
-  collectionData = { raw: collectionText };
-}
-
-if (collectionData.errors) {
-  console.error("❌ Shopify error:", collectionData.errors);
-  return res.status(400).json({ error: collectionData.errors });
-}
-
-      // Update vendors
-      vendors[storeName] = {
-        lat: parseFloat(lat),
-        lng: parseFloat(lng),
-        categories: [storeType],
-      };
-
-      // Save vendors back to file
-      fs.writeFileSync(
-        "./let-vendors.js",
-        `export let vendors = ${JSON.stringify(vendors, null, 2)};`
-      );
-
-      res.json({
-        message: "✅ Collection created & vendor updated",
-        collection: collectionData,
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: "Error creating collection" });
     }
+
+    const collectionId = shopifyData?.custom_collection?.id || null;
+
+    // -------------------
+    // 2️⃣ Update Railway /vendors
+    // -------------------
+    const vendorsResponse = await fetch(
+      "https://adsaurf-production.up.railway.app/vendors",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          vendor: vendor || name,
+          collectionId,
+          template,
+        }),
+      }
+    );
+
+    const vendorsData = await vendorsResponse.json();
+    console.log("✅ Vendors updated:", vendorsData);
+
+    // -------------------
+    // Final Response
+    // -------------------
+    res.json({
+      message: "Collection created and vendor updated successfully",
+      shopify: shopifyData,
+      vendors: vendorsData,
+    });
+  } catch (err) {
+    console.error("❌ Error in create-collection:", err);
+    res.status(500).json({ error: "Server error", details: err.message });
   }
-);
+});
+
+// ✅ Default health check
+app.get("/", (req, res) => {
+  res.send("🚀 Shopify Collection API running...");
+});
 
 // Start server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Backend running on ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
