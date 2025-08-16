@@ -1,14 +1,20 @@
-import express from "express";
-import fetch from "node-fetch";
-import multer from "multer";
-import cors from "cors";
-import fs from "fs";
+const express = require("express");
+const fetch = require("node-fetch"); // make sure node-fetch@2
+const multer = require("multer");
+const cors = require("cors");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
-const upload = multer({ dest: "uploads/" });
-
 app.use(cors());
 app.use(express.json());
+
+// Ensure uploads folder exists
+const UPLOAD_DIR = path.join(__dirname, "uploads");
+if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR);
+
+// Multer setup
+const upload = multer({ dest: UPLOAD_DIR });
 
 // Shopify API (smart collections)
 const SHOPIFY_API =
@@ -18,10 +24,9 @@ const SHOPIFY_TOKEN = process.env.SHOPIFY_ADMIN_TOKEN;
 // Vendors memory
 let vendors = {};
 try {
-  const mod = await import("./let-vendors.js");
-  vendors = mod.vendors;
+  vendors = require("./let-vendors.js").vendors;
 } catch (err) {
-  console.warn("⚠️ No vendors file found, starting with empty vendors.");
+  console.warn("⚠️ No vendors file found, starting empty.");
   vendors = {};
 }
 
@@ -98,8 +103,8 @@ app.post("/create-collection", upload.single("image"), async (req, res) => {
 
     // Save vendors back to file
     fs.writeFileSync(
-      "./let-vendors.js",
-      `export let vendors = ${JSON.stringify(vendors, null, 2)};`
+      path.join(__dirname, "let-vendors.js"),
+      `exports.vendors = ${JSON.stringify(vendors, null, 2)};`
     );
 
     res.json({
