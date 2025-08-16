@@ -69,12 +69,20 @@ app.post(
         }),
       });
 
-      const collectionData = await collectionRes.json();
+      const collectionText = await collectionRes.text();
+console.log("🔎 Shopify raw response:", collectionText);
 
-      if (collectionData.errors) {
-        console.error("❌ Shopify error:", collectionData.errors);
-        return res.status(400).json({ error: collectionData.errors });
-      }
+let collectionData;
+try {
+  collectionData = JSON.parse(collectionText);
+} catch {
+  collectionData = { raw: collectionText };
+}
+
+if (collectionData.errors) {
+  console.error("❌ Shopify error:", collectionData.errors);
+  return res.status(400).json({ error: collectionData.errors });
+}
 
       // Update vendors
       vendors[storeName] = {
