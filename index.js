@@ -27,6 +27,7 @@ async function loadVendors() {
 }
 
 function saveVendors(vendors) {
+  // Save all required fields: lat, lng, categories, image, uploaderId
   const content = `let vendors = ${JSON.stringify(vendors, null, 2)};\nexport default vendors;`;
   fs.writeFileSync(vendorsFile, content);
 }
@@ -47,10 +48,10 @@ app.post("/vendors", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // Upload to Cloudinary using preset
+    // Upload image to Cloudinary
     const form = new FormData();
     form.append("file", `data:image/png;base64,${imageBase64}`);
-    form.append("upload_preset", "Vendors"); // preset name
+    form.append("upload_preset", "Vendors");
 
     const cloudRes = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
       method: "POST",
