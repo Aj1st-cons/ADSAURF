@@ -27,15 +27,16 @@ async function loadVendors() {
 }
 
 function saveVendors(vendors) {
-  // Format vendors nicely for readability
   const lines = ["let vendors = {"];
-  for (const name in vendors) {
+  const names = Object.keys(vendors);
+  names.forEach((name, index) => {
     const v = vendors[name];
-    const categoriesStr = JSON.stringify(v.categories);
+    const categoriesStr = `[${v.categories.map(c => `"${c}"`).join(", ")}]`;
     const imageStr = v.image ? `"${v.image}"` : "null";
     const uploaderStr = v.uploaderId ? `"${v.uploaderId}"` : "null";
-    lines.push(`  "${name}": { lat: ${v.lat}, lng: ${v.lng}, categories: ${categoriesStr}, image: ${imageStr}, uploaderId: ${uploaderStr} },`);
-  }
+    const comma = index < names.length - 1 ? "," : "";
+    lines.push(`  "${name}": { lat: ${v.lat}, lng: ${v.lng}, categories: ${categoriesStr}, image: ${imageStr}, uploaderId: ${uploaderStr} }${comma}`);
+  });
   lines.push("};");
   lines.push("export default vendors;");
   fs.writeFileSync(vendorsFile, lines.join("\n"));
@@ -53,7 +54,7 @@ app.get("/vendors", async (req, res) => {
 app.post("/vendors", async (req, res) => {
   try {
     const { name, lat, lng, categories, uploaderId, imageBase64 } = req.body;
-    if (!name || !lat || !lng || !categories || !uploaderId || !imageBase64) {
+    if (!name || lat == null || lng == null || !categories || !uploaderId || !imageBase64) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
