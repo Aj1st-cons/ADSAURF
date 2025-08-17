@@ -2,23 +2,26 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import cors from "cors";
+import { fileURLToPath } from "url";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Vendors file path
-const vendorsFile = path.join(process.cwd(), "let-vendors.js");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const vendorsFile = path.join(__dirname, "let-vendors.js");
 
 // Ensure file exists
 if (!fs.existsSync(vendorsFile)) {
   fs.writeFileSync(vendorsFile, "let vendors = {};\nexport default vendors;");
 }
 
-// Helper: load vendors
-function loadVendors() {
-  delete require.cache[require.resolve("./let-vendors.js")];
-  return require("./let-vendors.js").default || {};
+// Helper: load vendors with dynamic import
+async function loadVendors() {
+  const vendorsModule = await import(vendorsFile + "?update=" + Date.now());
+  return vendorsModule.default || {};
 }
 
 // Helper: save vendors
@@ -28,9 +31,9 @@ function saveVendors(vendors) {
 }
 
 // Endpoint: Get vendors
-app.get("/vendors", (req, res) => {
+app.get("/vendors", async (req, res) => {
   try {
-    const vendors = loadVendors();
+    const vendors = await loadVendors();
     res.json(vendors);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -38,14 +41,14 @@ app.get("/vendors", (req, res) => {
 });
 
 // Endpoint: Add vendor
-app.post("/vendors", (req, res) => {
+app.post("/vendors", async (req, res) => {
   try {
     const { name, lat, lng, categories, image, uploaderId } = req.body;
     if (!name || !lat || !lng || !categories || !image || !uploaderId) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    const vendors = loadVendors();
+    const vendors = await loadVendors();
     vendors[name] = { lat, lng, categories, image, uploaderId };
     saveVendors(vendors);
 
