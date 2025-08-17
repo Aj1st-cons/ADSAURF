@@ -15,8 +15,6 @@ const __dirname = path.dirname(__filename);
 const vendorsFile = path.join(__dirname, "let-vendors.js");
 
 const CLOUDINARY_CLOUD_NAME = "dhekmzldg";
-const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
-const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
 
 // Ensure vendors file exists
 if (!fs.existsSync(vendorsFile)) {
@@ -49,10 +47,10 @@ app.post("/vendors", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // Upload to Cloudinary
+    // Upload to Cloudinary using preset
     const form = new FormData();
     form.append("file", `data:image/png;base64,${imageBase64}`);
-    form.append("upload_preset", "Vendors"); // your preset name
+    form.append("upload_preset", "Vendors"); // preset name
 
     const cloudRes = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
       method: "POST",
@@ -66,7 +64,6 @@ app.post("/vendors", async (req, res) => {
 
     const imageUrl = cloudData.secure_url;
 
-    // Save vendor
     const vendors = await loadVendors();
     vendors[name] = { lat, lng, categories, image: imageUrl, uploaderId };
     saveVendors(vendors);
