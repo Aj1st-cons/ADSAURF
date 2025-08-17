@@ -14,7 +14,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const vendorsFile = path.join(__dirname, "let-vendors.js");
 
-// Cloudinary credentials (set in Railway environment variables)
 const CLOUDINARY_CLOUD_NAME = "dhekmzldg";
 const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
 const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
@@ -24,19 +23,16 @@ if (!fs.existsSync(vendorsFile)) {
   fs.writeFileSync(vendorsFile, "let vendors = {};\nexport default vendors;");
 }
 
-// Load vendors
 async function loadVendors() {
   const vendorsModule = await import(vendorsFile + "?update=" + Date.now());
   return vendorsModule.default || {};
 }
 
-// Save vendors
 function saveVendors(vendors) {
   const content = `let vendors = ${JSON.stringify(vendors, null, 2)};\nexport default vendors;`;
   fs.writeFileSync(vendorsFile, content);
 }
 
-// Get vendors
 app.get("/vendors", async (req, res) => {
   try {
     const vendors = await loadVendors();
@@ -46,7 +42,6 @@ app.get("/vendors", async (req, res) => {
   }
 });
 
-// Add vendor with backend Cloudinary upload
 app.post("/vendors", async (req, res) => {
   try {
     const { name, lat, lng, categories, uploaderId, imageBase64 } = req.body;
@@ -57,16 +52,13 @@ app.post("/vendors", async (req, res) => {
     // Upload to Cloudinary
     const form = new FormData();
     form.append("file", `data:image/png;base64,${imageBase64}`);
-    form.append("api_key", CLOUDINARY_API_KEY);
-    form.append("timestamp", Math.floor(Date.now() / 1000));
-
-    const auth = Buffer.from(`${CLOUDINARY_API_KEY}:${CLOUDINARY_API_SECRET}`).toString("base64");
+    form.append("upload_preset", "Vendors"); // your preset name
 
     const cloudRes = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
       method: "POST",
-      body: form,
-      headers: { Authorization: `Basic ${auth}` }
+      body: form
     });
+
     const cloudData = await cloudRes.json();
     if (!cloudData.secure_url) {
       return res.status(500).json({ error: cloudData.error?.message || "Cloudinary upload failed" });
