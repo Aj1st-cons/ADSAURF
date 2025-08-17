@@ -27,9 +27,18 @@ async function loadVendors() {
 }
 
 function saveVendors(vendors) {
-  // Save all required fields: lat, lng, categories, image, uploaderId
-  const content = `let vendors = ${JSON.stringify(vendors, null, 2)};\nexport default vendors;`;
-  fs.writeFileSync(vendorsFile, content);
+  // Format vendors nicely for readability
+  const lines = ["let vendors = {"];
+  for (const name in vendors) {
+    const v = vendors[name];
+    const categoriesStr = JSON.stringify(v.categories);
+    const imageStr = v.image ? `"${v.image}"` : "null";
+    const uploaderStr = v.uploaderId ? `"${v.uploaderId}"` : "null";
+    lines.push(`  "${name}": { lat: ${v.lat}, lng: ${v.lng}, categories: ${categoriesStr}, image: ${imageStr}, uploaderId: ${uploaderStr} },`);
+  }
+  lines.push("};");
+  lines.push("export default vendors;");
+  fs.writeFileSync(vendorsFile, lines.join("\n"));
 }
 
 app.get("/vendors", async (req, res) => {
