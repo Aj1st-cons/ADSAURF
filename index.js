@@ -18,7 +18,7 @@ if (!fs.existsSync(vendorsFile)) {
   fs.writeFileSync(vendorsFile, "let vendors = {};\nexport default vendors;");
 }
 
-// Helper: load vendors with dynamic import
+// Helper: load vendors dynamically
 async function loadVendors() {
   const vendorsModule = await import(vendorsFile + "?update=" + Date.now());
   return vendorsModule.default || {};
