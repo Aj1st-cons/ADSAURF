@@ -1,31 +1,47 @@
 import express from "express";
 import fetch from "node-fetch";
-import multer from "multer";
+import FormData from "form-data";
 
 const app = express();
-const upload = multer();
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 
-// Cloudinary details
-const CLOUDINARY_IMAGE_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dhekmzldg/image/upload";
-const CLOUDINARY_RAW_UPLOAD_URL   = "https://api.cloudinary.com/v1_1/dhekmzldg/raw/upload";
-const CLOUDINARY_UPLOAD_PRESET    = "vendors_preset"; // unsigned preset
-const VENDORS_FILE_PUBLIC_ID      = "vendors"; // for vendors.json
+// Cloudinary settings
+const CLOUD_NAME = "dhekmzldg";
+const RAW_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`;
+const IMAGE_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+const UPLOAD_PRESET = "vendors_preset"; // unsigned preset for images
+const VENDORS_FILE_PUBLIC_ID = "vendors"; // vendors.json public ID
 
-// Cloudinary vendors.json URL (versionless, always points to latest)
-const CLOUDINARY_JSON_URL = "https://res.cloudinary.com/dhekmzldg/raw/upload/vendors.json";
+// Cloudinary vendors.json URL (always latest version)
+const CLOUDINARY_JSON_URL = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/${VENDORS_FILE_PUBLIC_ID}.json`;
 
-// POST: Add new vendor
-app.post("/add-vendor", upload.none(), async (req, res) => {
+// GET: fetch current vendors
+app.get("/vendors", async (req, res) => {
+  try {
+    const response = await fetch(CLOUDINARY_JSON_URL);
+    const vendors = await response.json();
+    res.json(vendors);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch vendors.json" });
+  }
+});
+
+// POST: add new vendor
+app.post("/add-vendor", async (req, res) => {
   try {
     const { name, lat, lng, categories, image, uploaderId } = req.body;
 
-    // 1. Fetch existing vendors.json from Cloudinary
+    if (!name || !lat || !lng || !categories || !image || !uploaderId) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // 1. Fetch existing vendors.json
     let vendors = {};
     try {
       const response = await fetch(CLOUDINARY_JSON_URL);
       vendors = await response.json();
-    } catch (err) {
+    } catch {
       console.log("No existing vendors.json found. Creating new.");
       vendors = {};
     }
@@ -34,40 +50,33 @@ app.post("/add-vendor", upload.none(), async (req, res) => {
     vendors[name] = {
       lat: parseFloat(lat),
       lng: parseFloat(lng),
-      categories: categories ? categories.split(",") : [],
+      categories: Array.isArray(categories) ? categories : categories.split(","),
       image,
-      uploaderId,
+      uploaderId
     };
 
-    // 3. Upload updated JSON back to Cloudinary (overwrite)
-    const uploadRes = await fetch(CLOUDINARY_UPLOAD_URL, {
+    // 3. Upload updated vendors.json to Cloudinary (overwrite)
+    const form = new FormData();
+    form.append("file", JSON.stringify(vendors));
+    form.append("upload_preset", UPLOAD_PRESET); // must be unsigned preset
+    form.append("public_id", VENDORS_FILE_PUBLIC_ID);
+    form.append("overwrite", "true");
+
+    const uploadRes = await fetch(RAW_UPLOAD_URL, {
       method: "POST",
-      body: new URLSearchParams({
-        file: JSON.stringify(vendors),
-        upload_preset: CLOUDINARY_UPLOAD_PRESET,
-        public_id: VENDORS_FILE_PUBLIC_ID,
-        overwrite: "true"
-      })
+      body: form
     });
 
-    const cloudinaryData = await uploadRes.json();
-    res.json({ success: true, url: cloudinaryData.secure_url, vendors });
+    const cloudData = await uploadRes.json();
+    if (!cloudData.secure_url) {
+      return res.status(500).json({ error: "Failed to upload vendors.json to Cloudinary" });
+    }
 
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+    res.json({ success: true, url: cloudData.secure_url, vendors });
 
-// GET: Retrieve vendors
-app.get("/vendors", async (req, res) => {
-  try {
-    const response = await fetch(CLOUDINARY_JSON_URL);
-    const vendors = await response.json();
-    res.json(vendors);
   } catch (err) {
-    console.error("Failed to fetch vendors.json:", err);
-    res.status(500).json({ error: "Failed to fetch vendors.json" });
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 });
 
