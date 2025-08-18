@@ -35,7 +35,9 @@ function saveVendors(vendors) {
     const imageStr = v.image ? `"${v.image}"` : "null";
     const uploaderStr = v.uploaderId ? `"${v.uploaderId}"` : "null";
     const comma = index < names.length - 1 ? "," : "";
-    lines.push(`  "${name}": { lat: ${v.lat}, lng: ${v.lng}, categories: ${categoriesStr}, image: ${imageStr}, uploaderId: ${uploaderStr} }${comma}`);
+    lines.push(
+      `  "${name}": { lat: ${v.lat}, lng: ${v.lng}, categories: ${categoriesStr}, image: ${imageStr}, uploaderId: ${uploaderStr} }${comma}`
+    );
   });
   lines.push("};");
   lines.push("export default vendors;");
@@ -63,14 +65,16 @@ app.post("/vendors", async (req, res) => {
     form.append("file", `data:image/png;base64,${imageBase64}`);
     form.append("upload_preset", "Vendors");
 
-    const cloudRes = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
-      method: "POST",
-      body: form
-    });
+    const cloudRes = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+      { method: "POST", body: form }
+    );
 
     const cloudData = await cloudRes.json();
     if (!cloudData.secure_url) {
-      return res.status(500).json({ error: cloudData.error?.message || "Cloudinary upload failed" });
+      return res
+        .status(500)
+        .json({ error: cloudData.error?.message || "Cloudinary upload failed" });
     }
 
     const imageUrl = cloudData.secure_url;
@@ -80,6 +84,20 @@ app.post("/vendors", async (req, res) => {
     saveVendors(vendors);
 
     res.json({ success: true, vendor: vendors[name] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ✅ NEW: bulk upload/update vendors
+app.post("/vendors-bulk", async (req, res) => {
+  try {
+    const { vendors } = req.body;
+    if (!vendors || typeof vendors !== "object") {
+      return res.status(400).json({ error: "Invalid vendors data" });
+    }
+    saveVendors(vendors);
+    res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
