@@ -8,8 +8,8 @@ app.use(express.json());
 
 // Cloudinary details
 const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dhekmzldg/raw/upload";
-const CLOUDINARY_UPLOAD_PRESET = "vendors_preset"; // must match the preset you created
-const VENDORS_FILE_PUBLIC_ID = "vendors"; // filename on Cloudinary
+const CLOUDINARY_UPLOAD_PRESET = "Vendors"; // must match the preset you created
+const VENDORS_FILE_PUBLIC_ID = "vendors_ynp4oh.json"; // filename on Cloudinary
 
 // Cloudinary vendors.json URL (versionless, always points to latest)
 const CLOUDINARY_JSON_URL = "https://res.cloudinary.com/dhekmzldg/raw/upload/vendors.json";
