@@ -7,9 +7,10 @@ const upload = multer();
 app.use(express.json());
 
 // Cloudinary details
-const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dhekmzldg/raw/upload";
-const CLOUDINARY_UPLOAD_PRESET = "Vendors"; // must match the preset you created
-const VENDORS_FILE_PUBLIC_ID = "vendors_ynp4oh.json"; // filename on Cloudinary
+const CLOUDINARY_IMAGE_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dhekmzldg/image/upload";
+const CLOUDINARY_RAW_UPLOAD_URL   = "https://api.cloudinary.com/v1_1/dhekmzldg/raw/upload";
+const CLOUDINARY_UPLOAD_PRESET    = "vendors_preset"; // unsigned preset
+const VENDORS_FILE_PUBLIC_ID      = "vendors"; // for vendors.json
 
 // Cloudinary vendors.json URL (versionless, always points to latest)
 const CLOUDINARY_JSON_URL = "https://res.cloudinary.com/dhekmzldg/raw/upload/vendors.json";
