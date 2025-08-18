@@ -8,13 +8,13 @@ app.use(express.json());
 
 // Cloudinary details
 const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dhekmzldg/raw/upload";
-const CLOUDINARY_UPLOAD_PRESET = "vendors_preset"; // 👈 must be created in Cloudinary
-const VENDORS_FILE_PUBLIC_ID = "vendors"; // file name on Cloudinary
+const CLOUDINARY_UPLOAD_PRESET = "vendors_preset"; // must match the preset you created
+const VENDORS_FILE_PUBLIC_ID = "vendors"; // filename on Cloudinary
 
-// Cloudinary vendors.json URL
+// Cloudinary vendors.json URL (versionless, always points to latest)
 const CLOUDINARY_JSON_URL = "https://res.cloudinary.com/dhekmzldg/raw/upload/vendors.json";
 
-// Add new vendor
+// POST: Add new vendor
 app.post("/add-vendor", upload.none(), async (req, res) => {
   try {
     const { name, lat, lng, categories, image, uploaderId } = req.body;
@@ -29,7 +29,7 @@ app.post("/add-vendor", upload.none(), async (req, res) => {
       vendors = {};
     }
 
-    // 2. Add new vendor
+    // 2. Add/merge new vendor
     vendors[name] = {
       lat: parseFloat(lat),
       lng: parseFloat(lng),
@@ -38,7 +38,7 @@ app.post("/add-vendor", upload.none(), async (req, res) => {
       uploaderId,
     };
 
-    // 3. Upload updated vendors.json back to Cloudinary (overwrite existing file)
+    // 3. Upload updated JSON back to Cloudinary (overwrite)
     const uploadRes = await fetch(CLOUDINARY_UPLOAD_URL, {
       method: "POST",
       body: new URLSearchParams({
@@ -50,7 +50,7 @@ app.post("/add-vendor", upload.none(), async (req, res) => {
     });
 
     const cloudinaryData = await uploadRes.json();
-    res.json({ success: true, url: cloudinaryData.secure_url });
+    res.json({ success: true, url: cloudinaryData.secure_url, vendors });
 
   } catch (error) {
     console.error(error);
@@ -58,6 +58,17 @@ app.post("/add-vendor", upload.none(), async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("🚀 Backend running on port 3000");
+// GET: Retrieve vendors
+app.get("/vendors", async (req, res) => {
+  try {
+    const response = await fetch(CLOUDINARY_JSON_URL);
+    const vendors = await response.json();
+    res.json(vendors);
+  } catch (err) {
+    console.error("Failed to fetch vendors.json:", err);
+    res.status(500).json({ error: "Failed to fetch vendors.json" });
+  }
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
