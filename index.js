@@ -42,7 +42,7 @@ async function saveVendors(vendors) {
       resource_type: "raw",
       public_id: vendorsFilePublicId,
       overwrite: true,
-      invalidate: true,  // <-- force Cloudinary to invalidate cache
+      invalidate: true, // force Cloudinary to refresh cached file
       format: "json",
     }
   );
@@ -70,12 +70,13 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
         const [lat, lng] = location.split(",").map(Number);
 
-        // fetch old vendors.json
+        // fetch latest vendors.json
         const vendors = await fetchVendors();
 
-        // Use unique key for each store to prevent overwriting
+        // generate unique key to prevent overwriting
         const key = `${name}-${Date.now()}`;
 
+        // add new vendor without removing old ones
         vendors[key] = {
           lat,
           lng,
@@ -91,7 +92,6 @@ app.post("/upload", upload.single("image"), async (req, res) => {
       }
     );
 
-    // write the file buffer into the stream
     uploadResult.end(req.file.buffer);
   } catch (err) {
     console.error(err);
@@ -105,8 +105,11 @@ app.get("/recent/:uploaderId", async (req, res) => {
     const vendors = await fetchVendors();
     const entries = Object.entries(vendors)
       .filter(([_, v]) => v.uploaderId === req.params.uploaderId)
-      .slice(-5) // last 5
-      .map(([key, val]) => ({ name: key, ...val }));
+      .slice(-5) // last 5 for this uploader
+      .map(([key, val]) => ({
+        name: key.replace(/-\d+$/, ""), // remove timestamp from display name
+        ...val,
+      }));
     res.json(entries);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch" });
