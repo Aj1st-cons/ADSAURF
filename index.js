@@ -6,61 +6,73 @@ import bodyParser from "body-parser";
 
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
-
 app.use(bodyParser.json());
 
+// ✅ Cloudinary config from Railway env vars
 cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true
 });
 
-// Cloudinary file details
+// File location in Cloudinary
 const VENDORS_FILE = "vendors/vendors.json";
-const UPLOAD_PRESET = "vendors";
 
-// Helper: fetch vendors.json from Cloudinary
+// --- Helpers ---
+
+// Fetch vendors.json from Cloudinary
 async function fetchVendors() {
   try {
-    const url = cloudinary.url(VENDORS_FILE, { resource_type: "raw", secure: true });
+    const url = cloudinary.url("vendors/vendors.json", {
+      resource_type: "raw",
+      secure: true
+    });
     const res = await fetch(url);
-    if (!res.ok) return {};
+    if (!res.ok) return {}; // If file doesn’t exist yet
     return await res.json();
   } catch (e) {
+    console.error("Fetch vendors.json failed:", e.message);
     return {};
   }
 }
 
-// Helper: upload new vendors.json
+// Save vendors.json back to Cloudinary
 async function saveVendors(vendors) {
   const uploadStr = JSON.stringify(vendors, null, 2);
-  await cloudinary.uploader.upload_stream({
-    resource_type: "raw",
-    public_id: "vendors/vendors",
-    overwrite: true,
-    format: "json"
-  }).end(uploadStr);
+  await cloudinary.uploader.upload(
+    "data:application/json;base64," +
+      Buffer.from(uploadStr).toString("base64"),
+    {
+      resource_type: "raw",
+      public_id: "vendors/vendors", // saved as vendors/vendors.json
+      overwrite: true,
+      format: "json"
+    }
+  );
 }
 
+// --- Routes ---
+
+// Upload new store
 app.post("/upload", upload.single("image"), async (req, res) => {
   try {
     const { name, location, type, uploaderId } = req.body;
     const [lat, lng] = location.split(",").map(Number);
 
-    // upload image to cloudinary
-    const imgRes = await cloudinary.uploader.upload_stream({
-      folder: "vendors",
-      upload_preset: UPLOAD_PRESET
-    });
-
+    // Upload image to Cloudinary
     const imageUrl = await new Promise((resolve, reject) => {
-      const stream = cloudinary.uploader.upload_stream({ folder: "vendors" },
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: "vendors" },
         (error, result) => {
           if (error) reject(error);
           else resolve(result.secure_url);
-        });
+        }
+      );
       stream.end(req.file.buffer);
     });
 
-    // update vendors.json
+    // Fetch + update vendors.json
     let vendors = await fetchVendors();
     vendors[name] = { lat, lng, categories: [type], image: imageUrl, uploaderId };
 
@@ -68,11 +80,12 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
     res.json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error("Upload failed:", err.message);
     res.json({ success: false, error: err.message });
   }
 });
 
+// Recent uploads for one uploader
 app.get("/recent/:uploaderId", async (req, res) => {
   const vendors = await fetchVendors();
   const list = Object.entries(vendors)
@@ -83,5 +96,6 @@ app.get("/recent/:uploaderId", async (req, res) => {
   res.json(list);
 });
 
+// --- Start server ---
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log("🚀 Backend running on " + port));
+app.listen(port, () => console.log("🚀 Backend running on port " + port));
