@@ -1,90 +1,99 @@
 import express from "express";
-import fetch from "node-fetch";
-import FormData from "form-data";
 import multer from "multer";
+import bodyParser from "body-parser";
+import cloudinary from "cloudinary";
+import fetch from "node-fetch";
 
 const app = express();
-app.use(express.json({ limit: "10mb" }));
+const upload = multer({ storage: multer.memoryStorage() });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+import cors from "cors";
+app.use(cors());
 
-// Multer setup to handle image uploads from HTML form
-const upload = multer();
-
-// Cloudinary settings
-const CLOUD_NAME = "dhekmzldg";
-const IMAGE_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
-const RAW_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`;
-const UPLOAD_PRESET = "vendors_preset"; // unsigned preset
-const VENDORS_FILE_PUBLIC_ID = "vendors"; // vendors.json public ID
-const CLOUDINARY_JSON_URL = `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/${VENDORS_FILE_PUBLIC_ID}.json`;
-
-// GET vendors
-app.get("/vendors", async (req, res) => {
-  try {
-    const response = await fetch(CLOUDINARY_JSON_URL);
-    const vendors = await response.json();
-    res.json(vendors);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to fetch vendors.json" });
-  }
+// Cloudinary config
+cloudinary.v2.config({
+  cloud_name: "dhekmzldg",
+  api_key: "534645945198165",
+  api_secret: "RjlUIg9VbPGMpbgH9Y-4cQkDB-c"
 });
 
-// POST add vendor (image + data)
-app.post("/add-vendor", upload.single("imageFile"), async (req, res) => {
-  try {
-    const { name, lat, lng, categories, uploaderId } = req.body;
-    const file = req.file;
+// Your Cloudinary JSON file URL
+const VENDORS_URL = "https://res.cloudinary.com/dhekmzldg/raw/upload/v1755544848/vendors_bmkuev.json";
 
-    if (!name || !lat || !lng || !categories || !uploaderId || !file) {
+// Upload new store
+app.post("/upload", upload.single("image"), async (req, res) => {
+  try {
+    const { name, lat, lng, category, uploaderId } = req.body;
+
+    if (!name || !lat || !lng || !category || !uploaderId) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // 1. Upload image to Cloudinary
-    const imgForm = new FormData();
-    imgForm.append("file", file.buffer, { filename: file.originalname });
-    imgForm.append("upload_preset", UPLOAD_PRESET);
+    // Upload store image to Cloudinary
+    const uploadedImage = await cloudinary.v2.uploader.upload_stream(
+      { folder: "vendors", resource_type: "image" },
+      async (error, result) => {
+        if (error) return res.status(500).json({ error: error.message });
 
-    const imgRes = await fetch(IMAGE_UPLOAD_URL, { method: "POST", body: imgForm });
-    const imgJson = await imgRes.json();
-    if (!imgJson.secure_url) throw new Error("Image upload failed");
-    const imageUrl = imgJson.secure_url;
+        const imageUrl = result.secure_url;
 
-    // 2. Fetch existing vendors.json
-    let vendors = {};
-    try {
-      const response = await fetch(CLOUDINARY_JSON_URL);
-      vendors = await response.json();
-    } catch {
-      vendors = {};
-    }
+        // Fetch existing vendors.json
+        const response = await fetch(VENDORS_URL);
+        const vendors = await response.json();
 
-    // 3. Merge new vendor
-    vendors[name] = {
-      lat: parseFloat(lat),
-      lng: parseFloat(lng),
-      categories: Array.isArray(categories) ? categories : categories.split(","),
-      image: imageUrl,
-      uploaderId
-    };
+        // Add new vendor
+        vendors[name] = {
+          lat: parseFloat(lat),
+          lng: parseFloat(lng),
+          categories: [category],
+          image: imageUrl,
+          uploaderId
+        };
 
-    // 4. Upload updated vendors.json to Cloudinary
-    const jsonForm = new FormData();
-    jsonForm.append("file", JSON.stringify(vendors));
-    jsonForm.append("upload_preset", UPLOAD_PRESET);
-    jsonForm.append("public_id", VENDORS_FILE_PUBLIC_ID);
-    jsonForm.append("overwrite", "true");
+        // Re-upload updated JSON to Cloudinary
+        const uploadJson = await cloudinary.v2.uploader.upload_stream(
+          { folder: "vendors", public_id: "vendors", resource_type: "raw", overwrite: true },
+          (err, resultJson) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ success: true, vendor: vendors[name] });
+          }
+        );
 
-    const jsonRes = await fetch(RAW_UPLOAD_URL, { method: "POST", body: jsonForm });
-    const jsonData = await jsonRes.json();
-    if (!jsonData.secure_url) throw new Error("Failed to upload vendors.json");
+        // Pipe JSON to Cloudinary
+        const stream = uploadJson;
+        stream.end(Buffer.from(JSON.stringify(vendors)));
+      }
+    );
 
-    res.json({ success: true, url: jsonData.secure_url, vendors });
+    // Pipe image buffer
+    uploadedImage.end(req.file.buffer);
 
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Fetch last 5 uploaded stores for a user
+app.get("/recent/:uploaderId", async (req, res) => {
+  try {
+    const response = await fetch(VENDORS_URL);
+    const vendors = await response.json();
+    const uploaderId = req.params.uploaderId;
+
+    const recent = Object.entries(vendors)
+      .filter(([_, v]) => v.uploaderId === uploaderId)
+      .slice(-5)
+      .reverse()
+      .map(([name, v]) => ({ name, ...v }));
+
+    res.json(recent);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
