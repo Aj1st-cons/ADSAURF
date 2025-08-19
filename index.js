@@ -1,7 +1,6 @@
 import express from "express";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
-import fs from "fs";
 import cors from "cors";
 
 const app = express();
@@ -73,7 +72,10 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         // fetch old vendors.json
         const vendors = await fetchVendors();
 
-        vendors[name] = {
+        // Use unique key for each store to prevent overwriting
+        const key = `${name}-${Date.now()}`;
+
+        vendors[key] = {
           lat,
           lng,
           categories: [type],
@@ -84,7 +86,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         // save back to Cloudinary
         await saveVendors(vendors);
 
-        res.json({ success: true, vendor: vendors[name] });
+        res.json({ success: true, vendor: vendors[key] });
       }
     );
 
