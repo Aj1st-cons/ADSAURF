@@ -42,6 +42,7 @@ async function saveVendors(vendors) {
       resource_type: "raw",
       public_id: vendorsFilePublicId,
       overwrite: true,
+      invalidate: true,  // <-- force Cloudinary to invalidate cache
       format: "json",
     }
   );
